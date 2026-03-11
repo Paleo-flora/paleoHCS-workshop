@@ -205,7 +205,16 @@
         import { getFirestore, collection, addDoc, onSnapshot, query, serverTimestamp, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // Firebase Configuration
-        const firebaseConfig = JSON.parse(__firebase_config);
+        // NOTE: Replace the empty string below with your Firebase config object from the Firebase Console.
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT.appspot.com",
+            messagingSenderId: "YOUR_ID",
+            appId: "YOUR_APP_ID"
+        };
+
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
@@ -213,7 +222,14 @@
 
         // Auth Setup
         let currentUser = null;
-        signInAnonymously(auth).catch(err => console.error("Auth error", err));
+        const initAuth = async () => {
+            try {
+                await signInAnonymously(auth);
+            } catch (err) {
+                console.error("Auth error", err);
+            }
+        };
+        initAuth();
         onAuthStateChanged(auth, (user) => { currentUser = user; });
 
         let currentData = [];
@@ -253,7 +269,10 @@
         // Form Submission
         document.getElementById('registrationForm').onsubmit = async (e) => {
             e.preventDefault();
-            if (!currentUser) return;
+            if (!currentUser) {
+                alert("Authenticating... please try again in a second.");
+                return;
+            }
 
             const btn = document.getElementById('submitBtn');
             const spinner = document.getElementById('submitSpinner');
@@ -279,7 +298,7 @@
                 document.getElementById('successMsg').classList.remove('hidden');
             } catch (err) {
                 console.error("Save error", err);
-                alert("Error saving data. Please try again.");
+                alert("Error saving data. Ensure your Firebase Rules allow public writes to the specified path.");
             } finally {
                 btn.disabled = false;
                 spinner.classList.add('hidden');
@@ -338,7 +357,10 @@
                     `;
                     table.innerHTML += row;
                 });
-            }, (err) => console.error("Snapshot error", err));
+            }, (err) => {
+                console.error("Snapshot error", err);
+                alert("Permission denied. Check Firestore security rules.");
+            });
         }
 
         window.deleteEntry = async (id) => {
