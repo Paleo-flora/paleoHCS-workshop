@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>paleoHCS Workshop | The last 23 Ma of the HCS</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>Ω
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Library for Excel Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; scroll-behavior: smooth; }
@@ -83,11 +85,11 @@
                     <p class="text-xs uppercase tracking-widest text-slate-500 mb-1">Lead Organizers</p>
                     <div class="space-y-1">
                         <p class="font-semibold text-white">
-                            <a href="https://geologie.uni-koeln.de/arbeitsgruppen/mikropalaeontolgie-palaeooekologie/team/prof-dr-patrick-grunert" target="_blank" class="hover:text-blue-400 underline decoration-blue-500/30 underline-offset-4 transition text-sm">Patrick Grunert</a> 
+                            <a href="https://geologie.uni-koeln.de/arbeitsgruppen/mikropalaeontolgie-palaeooekologie/team/prof-dr-patrick-grunert" target="_blank" class="hover:text-blue-400 underline decoration-blue-500/30 underline-offset-4 transition text-sm text-blue-300">Patrick Grunert</a> 
                             <span class="text-slate-400 font-normal text-sm">(University of Cologne)</span>
                         </p>
                         <p class="font-semibold text-white">
-                            <a href="https://produccioncientifica.usal.es/investigadores/452768/detalle" target="_blank" class="hover:text-blue-400 underline decoration-blue-500/30 underline-offset-4 transition text-sm">Diana Ochoa</a> 
+                            <a href="https://produccioncientifica.usal.es/investigadores/452768/detalle" target="_blank" class="hover:text-blue-400 underline decoration-blue-500/30 underline-offset-4 transition text-sm text-blue-300">Diana Ochoa</a> 
                             <span class="text-slate-400 font-normal text-sm">(University of Salamanca)</span>
                         </p>
                     </div>
@@ -107,31 +109,6 @@
             <h2 class="text-3xl font-bold mb-8 text-slate-900">Central Topic</h2>
             <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 italic text-lg text-slate-700 leading-relaxed">
                 "A comprehensive review of the oceanographic, climatic, and ecological features of the Humboldt Current System (HCS) over the last 23 million years."
-            </div>
-        </section>
-
-        <!-- Summary Section -->
-        <section class="max-w-4xl mx-auto">
-            <div class="bg-blue-900 rounded-3xl p-10 text-white shadow-xl">
-                <h3 class="text-2xl font-bold mb-6 text-center">Workshop Composition</h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                    <div class="p-4 bg-white/10 rounded-xl">
-                        <div class="text-3xl font-bold">24</div>
-                        <div class="text-xs text-blue-200 uppercase tracking-wider">Regular Talks</div>
-                    </div>
-                    <div class="p-4 bg-white/10 rounded-xl">
-                        <div class="text-3xl font-bold">4</div>
-                        <div class="text-xs text-blue-200 uppercase tracking-wider">Keynote Talks</div>
-                    </div>
-                    <div class="p-4 bg-white/10 rounded-xl">
-                        <div class="text-3xl font-bold">6</div>
-                        <div class="text-xs text-blue-200 uppercase tracking-wider">Debate Sessions</div>
-                    </div>
-                    <div class="p-4 bg-white/10 rounded-xl">
-                        <div class="text-3xl font-bold">3</div>
-                        <div class="text-xs text-blue-200 uppercase tracking-wider">Intense Days</div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -161,7 +138,6 @@
                     <p class="text-slate-600 text-sm">Linking Ocean-Atmosphere dynamics, Andes uplift, and climate during the Miocene.</p>
                 </div>
             </div>
-            <p class="mt-8 text-center text-slate-400 text-sm italic">4th Keynote Speaker — Presentation on Day 3 Morning</p>
         </section>
 
         <!-- Schedule Section -->
@@ -169,12 +145,18 @@
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
                 <div class="text-center md:text-left">
                     <h2 class="text-3xl font-bold text-slate-900">Full Workshop Agenda</h2>
-                    <p class="text-slate-500 italic">Select a day to view details</p>
+                    <p class="text-slate-500 italic">Access the schedule and export files</p>
                 </div>
-                <button onclick="downloadAgendaChart()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold flex items-center justify-center gap-2 shadow-sm transition">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    Download Agenda (JPG)
-                </button>
+                <div class="flex flex-wrap gap-3 justify-center">
+                    <button onclick="downloadExcel()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-lg font-semibold flex items-center justify-center gap-2 shadow-sm transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        Export Excel (.xlsx)
+                    </button>
+                    <button onclick="downloadAgendaChart()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold flex items-center justify-center gap-2 shadow-sm transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        Download Image (.jpg)
+                    </button>
+                </div>
             </div>
             
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
@@ -271,10 +253,7 @@
                     { time: "01:50 PM", event: "Afternoon Talk Block (5)", type: "Talks", color: "" },
                     { time: "03:30 PM", event: "Short Break", type: "Break", color: "bg-slate-50" },
                     { time: "03:50 PM", event: "Debate VI: Strategy", type: "Debate", color: "bg-blue-50" },
-                    { time: "04:40 PM", event: "Conclusions & Closing", type: "Closing", color: "bg-slate-900 text-white" },
-                    { time: " ", event: " ", type: " ", color: "" },
-                    { time: " ", event: " ", type: " ", color: "" },
-                    { time: " ", event: " ", type: " ", color: "" }
+                    { time: "04:40 PM", event: "Conclusions & Closing", type: "Closing", color: "bg-slate-900 text-white" }
                 ]
             }
         };
@@ -303,6 +282,32 @@
             content.innerHTML = html;
         }
 
+        function downloadExcel() {
+            const wb = XLSX.utils.book_new();
+            
+            [1, 2, 3].forEach(day => {
+                const data = agendaData[day];
+                const worksheetData = [
+                    [`Day ${day}: ${data.title}`],
+                    ["Time", "Event", "Type"],
+                    ...data.rows.filter(r => r.event.trim()).map(r => [r.time, r.event, r.type])
+                ];
+                
+                const ws = XLSX.utils.aoa_to_sheet(worksheetData);
+                
+                // Add simple column widths
+                ws['!cols'] = [
+                    { wch: 15 }, // Time
+                    { wch: 45 }, // Event
+                    { wch: 15 }  // Type
+                ];
+                
+                XLSX.utils.book_append_sheet(wb, ws, `Day ${day}`);
+            });
+            
+            XLSX.writeFile(wb, "paleoHCS_Workshop_Agenda_2026.xlsx");
+        }
+
         async function downloadAgendaChart() {
             const grid = document.getElementById('export-grid');
             grid.innerHTML = '';
@@ -329,7 +334,6 @@
                 grid.innerHTML += dayHtml;
             });
 
-            const wrapper = document.getElementById('export-wrapper');
             const container = document.getElementById('export-container');
             
             html2canvas(container, {
@@ -338,7 +342,7 @@
                 backgroundColor: "#ffffff"
             }).then(canvas => {
                 const link = document.createElement('a');
-                link.download = 'paleoHCS_Workshop_Agenda_Aligned.jpg';
+                link.download = 'paleoHCS_Workshop_Agenda.jpg';
                 link.href = canvas.toDataURL('image/jpeg', 0.95);
                 link.click();
             });
