@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>paleoHCS Workshop Registration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #f0f2f5; }
+        .form-card {
+            background: white;
+            border-top: 8px solid #673ab7;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        }
+        .input-underline {
+            border-bottom: 1px solid #ddd;
+            transition: border-color 0.3s ease;
+        }
+        .input-underline:focus {
+            outline: none;
+            border-bottom: 2px solid #673ab7;
+        }
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #673ab7;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="py-10 px-4">
+    <div id="app" class="max-w-2xl mx-auto">
+        <!-- Main Form View -->
+        <div id="formView">
+            <div class="form-card p-8 mb-6">
+                <div class="flex justify-between items-start">
+                    <h1 class="text-3xl font-bold mb-4 text-gray-800 leading-tight">paleoHCS Workshop: Questionnaire for Logistical Purposes</h1>
+                    <button onclick="toggleAdmin()" class="text-gray-300 hover:text-gray-500 text-xs">Admin</button>
+                </div>
+                <p class="text-sm text-gray-600 mb-6">Please fill out this form to confirm your attendance and travel details.</p>
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 text-sm text-blue-700">
+                    <strong>Privacy Note:</strong> All collected data will be kept strictly private and managed only by organization staff. It will be deleted automatically after the workshop, or sooner upon request.
+                </div>
+            </div>
+
+            <form id="registrationForm" class="space-y-6">
+                <!-- Name Section -->
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <label class="block text-gray-700 font-medium mb-4">Personal Information</label>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <p class="text-sm font-semibold text-gray-600 mb-2">First Name</p>
+                            <input type="text" name="firstName" required class="w-full py-2 input-underline" placeholder="Your answer">
+                        </div>
+                        <div>
+                            <p class="text-sm font-semibold text-gray-600 mb-2">Last Name</p>
+                            <input type="text" name="lastName" required class="w-full py-2 input-underline" placeholder="Your answer">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Section -->
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <p class="text-sm font-semibold text-gray-600 mb-2">Email Address</p>
+                    <input type="email" name="email" required class="w-full py-2 input-underline" placeholder="example@domain.com">
+                </div>
+
+                <!-- Attendance Confirmation -->
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <p class="text-sm font-semibold text-gray-600 mb-4">Are you still willing to attend the workshop?</p>
+                    <div class="space-y-3">
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="radio" name="attendance" value="Yes" required class="w-4 h-4 text-purple-600">
+                            <span>Yes, I will be attending</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="radio" name="attendance" value="No" class="w-4 h-4 text-purple-600">
+                            <span>No, I am unable to attend</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Flight Details -->
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <p class="text-sm font-semibold text-gray-600 mb-2">Flight Details</p>
+                    <p class="text-xs text-gray-500 mb-4">Please provide the city you are traveling from.</p>
+                    
+                    <div class="flex flex-col space-y-4">
+                        <div class="flex gap-2">
+                            <input type="text" id="departureCity" name="departureCity" class="flex-grow py-2 input-underline" placeholder="e.g. Salamanca, Spain">
+                            <button type="button" onclick="findHub()" id="hubBtn" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded text-sm transition">
+                                Find Nearest Hub
+                            </button>
+                        </div>
+                        <div id="hubResult" class="hidden text-sm bg-purple-50 p-3 rounded text-purple-800 italic"></div>
+                        <textarea name="flightNotes" rows="2" class="w-full py-2 input-underline resize-none" placeholder="Additional flight info..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Accommodation Section -->
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <p class="text-sm font-semibold text-gray-600 mb-2">Accommodation Policy</p>
+                    <div class="mb-4 p-3 bg-amber-50 border-l-4 border-amber-400 text-xs text-amber-800">
+                        Please note: We can only provide <strong>double rooms</strong>. If you are not willing to share a same-gender room, we unfortunately cannot provide accommodation.
+                    </div>
+                    
+                    <p class="text-sm font-semibold text-gray-600 mb-4">Are you willing to share a same-gender double room?</p>
+                    <div class="space-y-3">
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="radio" name="sharing" value="Yes" required class="w-4 h-4 text-purple-600">
+                            <span>Yes, I am willing to share</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="radio" name="sharing" value="No" class="w-4 h-4 text-purple-600">
+                            <span>No, I am not willing to share (I will arrange my own)</span>
+                        </label>
+                    </div>
+
+                    <div class="mt-8">
+                        <p class="text-sm font-semibold text-gray-600 mb-2">Gender</p>
+                        <select name="gender" required class="w-full py-2 input-underline bg-transparent">
+                            <option value="" disabled selected>Select gender</option>
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Other">Other / Prefer not to say</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <button type="submit" id="submitBtn" class="bg-[#673ab7] hover:bg-[#5e35b1] text-white font-bold py-2 px-8 rounded shadow-md transition inline-flex items-center gap-2">
+                        <span>Submit</span>
+                        <div id="submitSpinner" class="loading-spinner hidden"></div>
+                    </button>
+                    <button type="reset" class="text-gray-500 text-sm hover:underline">Clear form</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Admin Dashboard View -->
+        <div id="adminView" class="hidden">
+            <div class="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Admin Dashboard</h2>
+                    <button onclick="toggleAdmin()" class="text-purple-600 font-semibold">← Back to Form</button>
+                </div>
+                
+                <div id="adminAuth" class="mb-6">
+                    <p class="text-sm text-gray-600 mb-2">Enter Admin Password to view results:</p>
+                    <div class="flex gap-2">
+                        <input type="password" id="adminPass" class="border p-2 rounded flex-grow" placeholder="Password">
+                        <button onclick="checkAdminPass()" class="bg-purple-600 text-white px-4 py-2 rounded">Login</button>
+                    </div>
+                </div>
+
+                <div id="adminContent" class="hidden">
+                    <div class="flex justify-end mb-4">
+                        <button onclick="exportToCSV()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                            Export to Excel (CSV)
+                        </button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-100 border-b">
+                                    <th class="p-3">Name</th>
+                                    <th class="p-3">Email</th>
+                                    <th class="p-3">Attend?</th>
+                                    <th class="p-3">Hub Recommendation</th>
+                                    <th class="p-3">Share?</th>
+                                    <th class="p-3 text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="responsesTable">
+                                <!-- Data injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="noData" class="py-10 text-center text-gray-500">No responses yet.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Modal -->
+        <div id="successMsg" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div class="bg-white p-8 rounded-lg max-w-sm w-full text-center">
+                <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <h2 class="text-xl font-bold mb-2">Response Recorded</h2>
+                <p class="text-gray-600 mb-6">Your data has been saved to the cloud securely.</p>
+                <button onclick="location.reload()" class="bg-purple-600 text-white px-6 py-2 rounded-full w-full">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, serverTimestamp, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Firebase Configuration
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'paleo-hcs-workshop';
+
+        // Auth Setup
+        let currentUser = null;
+        signInAnonymously(auth).catch(err => console.error("Auth error", err));
+        onAuthStateChanged(auth, (user) => { currentUser = user; });
+
+        let currentData = [];
+
+        // AI Feature: Find Nearest Hub
+        window.findHub = async () => {
+            const apiKey = ""; 
+            const city = document.getElementById('departureCity').value;
+            const hubBtn = document.getElementById('hubBtn');
+            const hubResult = document.getElementById('hubResult');
+
+            if (!city) return;
+            hubBtn.disabled = true;
+            hubBtn.innerText = "Searching...";
+
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: `User city: ${city}. Find the single largest/closest international airport hub. Return only the IATA code and name.` }] }]
+                    })
+                });
+                const data = await response.json();
+                const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "No recommendation found.";
+                hubResult.innerText = `Recommended Hub: ${text}`;
+                hubResult.classList.remove('hidden');
+            } catch (e) {
+                hubResult.innerText = "Error searching. Please enter manually.";
+                hubResult.classList.remove('hidden');
+            } finally {
+                hubBtn.disabled = false;
+                hubBtn.innerText = "Find Nearest Hub";
+            }
+        };
+
+        // Form Submission
+        document.getElementById('registrationForm').onsubmit = async (e) => {
+            e.preventDefault();
+            if (!currentUser) return;
+
+            const btn = document.getElementById('submitBtn');
+            const spinner = document.getElementById('submitSpinner');
+            btn.disabled = true;
+            spinner.classList.remove('hidden');
+
+            const formData = new FormData(e.target);
+            const data = {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                attendance: formData.get('attendance'),
+                departureCity: formData.get('departureCity'),
+                hubSuggestion: document.getElementById('hubResult').innerText,
+                flightNotes: formData.get('flightNotes'),
+                sharing: formData.get('sharing'),
+                gender: formData.get('gender'),
+                timestamp: serverTimestamp()
+            };
+
+            try {
+                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'registrations'), data);
+                document.getElementById('successMsg').classList.remove('hidden');
+            } catch (err) {
+                console.error("Save error", err);
+                alert("Error saving data. Please try again.");
+            } finally {
+                btn.disabled = false;
+                spinner.classList.add('hidden');
+            }
+        };
+
+        // Admin Toggle
+        window.toggleAdmin = () => {
+            const fv = document.getElementById('formView');
+            const av = document.getElementById('adminView');
+            fv.classList.toggle('hidden');
+            av.classList.toggle('hidden');
+        };
+
+        window.checkAdminPass = () => {
+            if (document.getElementById('adminPass').value === "paleo2025") {
+                document.getElementById('adminAuth').classList.add('hidden');
+                document.getElementById('adminContent').classList.remove('hidden');
+                loadResponses();
+            } else {
+                alert("Incorrect Password");
+            }
+        };
+
+        // Load & Delete Logic
+        function loadResponses() {
+            const table = document.getElementById('responsesTable');
+            const noData = document.getElementById('noData');
+            const q = query(collection(db, 'artifacts', appId, 'public', 'data', 'registrations'));
+            
+            onSnapshot(q, (snapshot) => {
+                table.innerHTML = "";
+                currentData = [];
+                if (snapshot.empty) {
+                    noData.classList.remove('hidden');
+                    return;
+                }
+                noData.classList.add('hidden');
+                
+                snapshot.forEach((doc) => {
+                    const d = { id: doc.id, ...doc.data() };
+                    currentData.push(d);
+                    const row = `
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="p-3 font-medium">${d.firstName} ${d.lastName}</td>
+                            <td class="p-3 text-gray-500">${d.email}</td>
+                            <td class="p-3">${d.attendance}</td>
+                            <td class="p-3 text-xs text-gray-400">${d.hubSuggestion || 'N/A'}</td>
+                            <td class="p-3">${d.sharing}</td>
+                            <td class="p-3 text-center">
+                                <button onclick="deleteEntry('${d.id}')" class="text-red-400 hover:text-red-600 transition">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                    table.innerHTML += row;
+                });
+            }, (err) => console.error("Snapshot error", err));
+        }
+
+        window.deleteEntry = async (id) => {
+            if (!confirm("Are you sure you want to delete this response? This cannot be undone.")) return;
+            try {
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'registrations', id));
+            } catch (e) {
+                alert("Error deleting document.");
+            }
+        };
+
+        // Export to CSV
+        window.exportToCSV = () => {
+            if (currentData.length === 0) return;
+            const headers = ["First Name", "Last Name", "Email", "Attendance", "Departure City", "Hub Recommendation", "Willing to Share", "Gender"];
+            const rows = currentData.map(d => [
+                d.firstName, d.lastName, d.email, d.attendance, d.departureCity, d.hubSuggestion, d.sharing, d.gender
+            ]);
+            
+            let csvContent = "data:text/csv;charset=utf-8," 
+                + headers.join(",") + "\n"
+                + rows.map(e => e.map(cell => `"${(cell || '').toString().replace(/"/g, '""')}"`).join(",")).join("\n");
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "paleoHCS_registrations.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        };
+    </script>
+</body>
+</html>
