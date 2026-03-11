@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>paleoHCS Workshop | The last 23 Ma of the HCS</title>
-    <script src="https://cdn.tailwindcss.com"></script>Ω
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <!-- Library for Excel Export -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -41,7 +40,6 @@
             border-bottom-color: #2563eb;
             background: #eff6ff;
         }
-        /* Export styles */
         #export-container {
             padding: 40px;
             background: white;
@@ -69,7 +67,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <header class="hero-gradient text-white py-24 px-4 text-center">
         <div class="max-w-4xl mx-auto">
             <div class="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wide uppercase bg-blue-500/20 text-blue-300 rounded-full border border-blue-500/30">
@@ -77,25 +75,9 @@
             </div>
             <h1 class="text-4xl md:text-6xl font-extrabold mb-8 tracking-tight leading-tight">
                 The last 23 Ma of the HCS: <br>
-                <span class="text-blue-400 font-light italic text-3xl md:text-5xl">a review of oceanographic, climatic and ecological features</span>
+                <span class="text-blue-400 font-light italic text-3xl md:text-5xl">oceanographic, climatic and ecological features</span>
             </h1>
             
-            <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-12 text-slate-300">
-                <div class="text-center">
-                    <p class="text-xs uppercase tracking-widest text-slate-500 mb-1">Lead Organizers</p>
-                    <div class="space-y-1">
-                        <p class="font-semibold text-white">
-                            <a href="https://geologie.uni-koeln.de/arbeitsgruppen/mikropalaeontolgie-palaeooekologie/team/prof-dr-patrick-grunert" target="_blank" class="hover:text-blue-400 underline decoration-blue-500/30 underline-offset-4 transition text-sm text-blue-300">Patrick Grunert</a> 
-                            <span class="text-slate-400 font-normal text-sm">(University of Cologne)</span>
-                        </p>
-                        <p class="font-semibold text-white">
-                            <a href="https://produccioncientifica.usal.es/investigadores/452768/detalle" target="_blank" class="hover:text-blue-400 underline decoration-blue-500/30 underline-offset-4 transition text-sm text-blue-300">Diana Ochoa</a> 
-                            <span class="text-slate-400 font-normal text-sm">(University of Salamanca)</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
             <div class="flex flex-wrap justify-center gap-4">
                 <a href="#schedule" class="bg-white text-slate-900 px-8 py-3 rounded-full font-semibold hover:bg-slate-100 transition shadow-lg border border-transparent">View Schedule</a>
             </div>
@@ -103,117 +85,58 @@
     </header>
 
     <main class="max-w-6xl mx-auto px-4 py-20 space-y-32">
-        
-        <!-- About Section -->
-        <section id="about" class="max-w-3xl mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-8 text-slate-900">Central Topic</h2>
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 italic text-lg text-slate-700 leading-relaxed">
-                "A comprehensive review of the oceanographic, climatic, and ecological features of the Humboldt Current System (HCS) over the last 23 million years."
-            </div>
-        </section>
-
-        <!-- Keynote Speakers -->
-        <section id="speakers">
-            <h2 class="text-3xl font-bold mb-12 text-center text-slate-900">Confirmed Keynote Speakers</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="card p-8 border-t-4 border-blue-600">
-                    <h3 class="text-xl font-bold mb-2 text-slate-800 underline underline-offset-4 decoration-slate-200">
-                        <a href="https://www.awi.de/en/about-us/organisation/staff/single-view/frank-lamy.html" target="_blank" class="hover:text-blue-600">Frank Lamy</a>
-                    </h3>
-                    <p class="text-blue-600 font-semibold text-sm mb-4 uppercase tracking-wide">Paleoceanography</p>
-                    <p class="text-slate-600 text-sm">Providing expert insights into the long-term oceanographic evolution of the system.</p>
-                </div>
-                <div class="card p-8 border-t-4 border-blue-600">
-                    <h3 class="text-xl font-bold mb-2 text-slate-800 underline underline-offset-4 decoration-slate-200">
-                        <a href="https://idea-m.com/index.php/elisa-maliverno/" target="_blank" class="hover:text-blue-600">Elisa Malinverno</a>
-                    </h3>
-                    <p class="text-blue-600 font-semibold text-sm mb-4 uppercase tracking-wide">Paleoecosystem Perspective</p>
-                    <p class="text-slate-600 text-sm">Focusing on Diatoms and the biological response to historical climate shifts.</p>
-                </div>
-                <div class="card p-8 border-t-4 border-blue-600">
-                    <h3 class="text-xl font-bold mb-2 text-slate-800 underline underline-offset-4 decoration-slate-200">
-                        <a href="https://pierre-sepulchre.github.io/" target="_blank" class="hover:text-blue-600">Pierre Sepulchre</a>
-                    </h3>
-                    <p class="text-blue-600 font-semibold text-sm mb-4 uppercase tracking-wide">Modeller Perspective</p>
-                    <p class="text-slate-600 text-sm">Linking Ocean-Atmosphere dynamics, Andes uplift, and climate during the Miocene.</p>
-                </div>
-            </div>
-        </section>
-
         <!-- Schedule Section -->
         <section id="schedule" class="max-w-5xl mx-auto">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
                 <div class="text-center md:text-left">
-                    <h2 class="text-3xl font-bold text-slate-900">Full Workshop Agenda</h2>
-                    <p class="text-slate-500 italic">Access the schedule and export files</p>
+                    <h2 class="text-3xl font-bold text-slate-900">Workshop Agenda</h2>
+                    <p class="text-slate-500 italic">Updated based on the latest planning</p>
                 </div>
                 <div class="flex flex-wrap gap-3 justify-center">
                     <button onclick="downloadExcel()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-lg font-semibold flex items-center justify-center gap-2 shadow-sm transition">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        Export Excel (.xlsx)
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                        Export Excel
                     </button>
                     <button onclick="downloadAgendaChart()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold flex items-center justify-center gap-2 shadow-sm transition">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                        Download Image (.jpg)
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                        Download Image
                     </button>
                 </div>
             </div>
             
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                 <div class="flex border-b border-slate-200 bg-slate-50">
-                    <div onclick="showDay(1)" id="tab-1" class="day-tab active flex-1 text-center">Day 1: Records & Foundations</div>
-                    <div onclick="showDay(2)" id="tab-2" class="day-tab flex-1 text-center">Day 2: Ecological Integration</div>
-                    <div onclick="showDay(3)" id="tab-3" class="day-tab flex-1 text-center">Day 3: Future & Synthesis</div>
+                    <div onclick="showDay(1)" id="tab-1" class="day-tab active flex-1 text-center">Day 1</div>
+                    <div onclick="showDay(2)" id="tab-2" class="day-tab flex-1 text-center">Day 2</div>
+                    <div onclick="showDay(3)" id="tab-3" class="day-tab flex-1 text-center">Day 3</div>
                 </div>
 
-                <div id="day-content" class="divide-y divide-slate-100">
-                    <!-- Content injected by JS -->
-                </div>
+                <div id="day-content" class="divide-y divide-slate-100"></div>
             </div>
         </section>
-
     </main>
 
-    <!-- Hidden Export Template for html2canvas -->
     <div id="export-wrapper" style="position: absolute; left: -9999px;">
         <div id="export-container">
-            <div class="flex items-center justify-between mb-6 border-b-2 border-blue-900 pb-4">
-                <div>
-                    <h1 class="text-2xl font-bold text-blue-900 uppercase tracking-tighter">paleoHCS Workshop 2026</h1>
-                    <p class="text-slate-500 text-sm font-medium italic">"The last 23 Ma of the HCS: a review of oceanographic, climatic and ecological features"</p>
-                </div>
-                <div class="text-right text-xs text-slate-400 font-semibold">
-                    University of Cologne & University of Salamanca
-                </div>
-            </div>
-            <div id="export-grid" class="grid grid-cols-3 gap-4"></div>
-            <div class="mt-6 pt-4 border-t border-slate-200 flex justify-between items-center text-[10px] text-slate-400">
-                <span>© 2026 paleoHCS Agenda Overview</span>
-                <span class="italic text-[9px]">Exported for Workshop Reference</span>
-            </div>
+            <h1 class="text-3xl font-bold text-blue-900 mb-6">paleoHCS Workshop Agenda 2026</h1>
+            <div id="export-grid" class="grid grid-cols-3 gap-6"></div>
         </div>
     </div>
-
-    <footer class="bg-slate-900 text-slate-500 py-12 px-4 border-t border-slate-800">
-        <div class="max-w-6xl mx-auto text-center">
-            <p class="text-sm">© 2026 paleoHCS Workshop. Organized by University of Cologne and University of Salamanca.</p>
-        </div>
-    </footer>
 
     <script>
         const agendaData = {
             1: {
-                title: "Oceanographic Evolution",
+                title: "Day 1: Oceanographic Evolution",
                 rows: [
                     { time: "09:00 AM", event: "Welcome & Housekeeping", type: "Intro", color: "bg-slate-50" },
-                    { time: "09:15 AM", event: "Keynote: Frank Lamy", type: "Keynote", color: "bg-amber-50" },
-                    { time: "09:55 AM", event: "Q&A Session", type: "Q&A", color: "bg-amber-50/50" },
+                    { time: "09:15 AM", event: "Keynote: Frank Lamy", type: "Keynote", color: "bg-orange-50" },
+                    { time: "09:55 AM", event: "Q&A Session Keynote", type: "Q&A", color: "bg-orange-50/50" },
                     { time: "10:05 AM", event: "Morning Talk Block (3)", type: "Talks", color: "" },
                     { time: "11:05 AM", event: "Coffee Break", type: "Break", color: "bg-slate-50" },
                     { time: "11:25 AM", event: "Debate I: Record Gaps", type: "Debate", color: "bg-blue-50" },
                     { time: "12:30 PM", event: "Lunch Break", type: "Break", color: "bg-slate-50" },
-                    { time: "01:50 PM", event: "Keynote: Pierre Sepulchre", type: "Keynote", color: "bg-amber-50" },
-                    { time: "02:30 PM", event: "Q&A Session", type: "Q&A", color: "bg-amber-50/50" },
+                    { time: "01:50 PM", event: "Keynote: Pierre Sepulchre", type: "Keynote", color: "bg-orange-50" },
+                    { time: "02:30 PM", event: "Q&A Session Keynote", type: "Q&A", color: "bg-orange-50/50" },
                     { time: "02:40 PM", event: "Afternoon Talk Block A (3)", type: "Talks", color: "" },
                     { time: "03:40 PM", event: "Short Break", type: "Break", color: "bg-slate-50" },
                     { time: "04:00 PM", event: "Afternoon Talk Block B (2)", type: "Talks", color: "" },
@@ -222,38 +145,38 @@
                 ]
             },
             2: {
-                title: "Ecological Integration",
+                title: "Day 2: Ecological Integration",
                 rows: [
                     { time: "09:00 AM", event: "Morning Briefing", type: "Intro", color: "bg-slate-50" },
-                    { time: "09:15 AM", event: "Keynote: Elisa Malinverno", type: "Keynote", color: "bg-amber-50" },
-                    { time: "09:55 AM", event: "Q&A Session", type: "Q&A", color: "bg-amber-50/50" },
+                    { time: "09:15 AM", event: "Keynote: Elisa Malinverno", type: "Keynote", color: "bg-orange-50" },
+                    { time: "09:55 AM", event: "Q&A Session Keynote", type: "Q&A", color: "bg-orange-50/50" },
                     { time: "10:05 AM", event: "Morning Talk Block (3)", type: "Talks", color: "" },
                     { time: "11:05 AM", event: "Coffee Break", type: "Break", color: "bg-slate-50" },
                     { time: "11:25 AM", event: "Debate III: Big Data", type: "Debate", color: "bg-blue-50" },
                     { time: "12:30 PM", event: "Lunch Break", type: "Break", color: "bg-slate-50" },
-                    { time: "01:50 PM", event: "Afternoon Talk Block A (3)", type: "Talks", color: "" },
-                    { time: "02:50 PM", event: "Afternoon Talk Block B (2)", type: "Talks", color: "" },
+                    { time: "01:50 PM", event: "Afternoon Talk Block (5)", type: "Talks", color: "" },
                     { time: "03:30 PM", event: "Group Photo Session", type: "Event", color: "bg-emerald-50" },
-                    { time: "03:45 PM", event: "Short Break", type: "Break", color: "bg-slate-50" },
+                    { time: "03:40 PM", event: "Short Break", type: "Break", color: "bg-slate-50" },
                     { time: "04:05 PM", event: "Debate IV: Climate Response", type: "Debate", color: "bg-blue-50" },
                     { time: "05:00 PM", event: "Daily Wrap-up", type: "Closing", color: "bg-slate-100" },
-                    { time: "05:20 PM", event: "Social Gathering", type: "Social", color: "bg-slate-800 text-white" }
+                    { time: "05:30 PM", event: "Social Gathering", type: "Social", color: "bg-slate-800 text-white" }
                 ]
             },
             3: {
-                title: "Future & Synthesis",
+                title: "Day 3: Future & Synthesis",
                 rows: [
                     { time: "09:00 AM", event: "Morning Briefing", type: "Intro", color: "bg-slate-50" },
-                    { time: "09:15 AM", event: "Keynote: 4th Speaker (TBD)", type: "Keynote", color: "bg-amber-50" },
-                    { time: "09:55 AM", event: "Q&A Session", type: "Q&A", color: "bg-amber-50/50" },
+                    { time: "09:15 AM", event: "Keynote: 4th Speaker (TBD)", type: "Keynote", color: "bg-orange-50" },
+                    { time: "09:55 AM", event: "Q&A Session Keynote", type: "Q&A", color: "bg-orange-50/50" },
                     { time: "10:05 AM", event: "Morning Talk Block (3)", type: "Talks", color: "" },
                     { time: "11:05 AM", event: "Coffee Break", type: "Break", color: "bg-slate-50" },
                     { time: "11:25 AM", event: "Debate V: Joint Funding", type: "Debate", color: "bg-blue-50" },
                     { time: "12:30 PM", event: "Lunch Break", type: "Break", color: "bg-slate-50" },
                     { time: "01:50 PM", event: "Afternoon Talk Block (5)", type: "Talks", color: "" },
-                    { time: "03:30 PM", event: "Short Break", type: "Break", color: "bg-slate-50" },
+                    { time: "03:40 PM", event: "Short Break", type: "Break", color: "bg-slate-50" },
                     { time: "03:50 PM", event: "Debate VI: Strategy", type: "Debate", color: "bg-blue-50" },
-                    { time: "04:40 PM", event: "Conclusions & Closing", type: "Closing", color: "bg-slate-900 text-white" }
+                    { time: "05:00 PM", event: "Daily Wrap-up", type: "Closing", color: "bg-slate-100" },
+                    { time: "05:30 PM", event: "Conclusions & Closing Event", type: "Closing", color: "bg-slate-900 text-white" }
                 ]
             }
         };
@@ -261,21 +184,15 @@
         function showDay(dayNum) {
             document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
             document.getElementById(`tab-${dayNum}`).classList.add('active');
-
             const content = document.getElementById('day-content');
             const data = agendaData[dayNum];
-            
-            let html = `<div class="bg-blue-50 px-6 py-3 font-bold text-blue-800 text-sm tracking-wide">THEME: ${data.title}</div>`;
-            
+            let html = `<div class="bg-blue-50 px-6 py-3 font-bold text-blue-800 text-sm">${data.title.toUpperCase()}</div>`;
             data.rows.forEach(row => {
-                if(!row.event.trim()) return;
                 html += `
                     <div class="px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-2 ${row.color}">
                         <span class="font-semibold w-24 text-sm">${row.time}</span>
-                        <div class="flex-grow">
-                            <div class="font-bold text-slate-800">${row.event}</div>
-                        </div>
-                        <span class="schedule-tag whitespace-nowrap">${row.type}</span>
+                        <div class="flex-grow font-bold text-slate-800">${row.event}</div>
+                        <span class="schedule-tag">${row.type}</span>
                     </div>
                 `;
             });
@@ -284,49 +201,35 @@
 
         function downloadExcel() {
             const wb = XLSX.utils.book_new();
-            
             [1, 2, 3].forEach(day => {
                 const data = agendaData[day];
-                const worksheetData = [
-                    [`Day ${day}: ${data.title}`],
+                const wsData = [
+                    [data.title],
                     ["Time", "Event", "Type"],
-                    ...data.rows.filter(r => r.event.trim()).map(r => [r.time, r.event, r.type])
+                    ...data.rows.map(r => [r.time, r.event, r.type])
                 ];
-                
-                const ws = XLSX.utils.aoa_to_sheet(worksheetData);
-                
-                // Add simple column widths
-                ws['!cols'] = [
-                    { wch: 15 }, // Time
-                    { wch: 45 }, // Event
-                    { wch: 15 }  // Type
-                ];
-                
+                const ws = XLSX.utils.aoa_to_sheet(wsData);
+                ws['!cols'] = [{ wch: 15 }, { wch: 45 }, { wch: 15 }];
                 XLSX.utils.book_append_sheet(wb, ws, `Day ${day}`);
             });
-            
-            XLSX.writeFile(wb, "paleoHCS_Workshop_Agenda_2026.xlsx");
+            XLSX.writeFile(wb, "paleoHCS_Workshop_Agenda.xlsx");
         }
 
         async function downloadAgendaChart() {
             const grid = document.getElementById('export-grid');
             grid.innerHTML = '';
-            
             [1, 2, 3].forEach(day => {
                 const dayData = agendaData[day];
                 let dayHtml = `
-                    <div class="border rounded-lg overflow-hidden shadow-sm flex flex-col h-full bg-white">
-                        <div class="bg-blue-900 text-white px-3 py-2">
-                            <div class="text-[9px] uppercase opacity-70 font-bold">Day ${day}</div>
-                            <div class="text-xs font-bold leading-tight truncate">${dayData.title}</div>
-                        </div>
-                        <div class="text-[9.5px] divide-y flex-grow">
+                    <div class="border rounded-lg overflow-hidden bg-white">
+                        <div class="bg-blue-900 text-white px-3 py-2 font-bold text-sm">${dayData.title}</div>
+                        <div class="text-[10px] divide-y">
                 `;
                 dayData.rows.forEach(row => {
                     dayHtml += `
-                        <div class="px-2 py-1.5 flex items-center gap-1.5 ${row.color || ''} min-h-[28px]">
-                            <span class="export-time-col text-blue-800 whitespace-nowrap">${row.time}</span>
-                            <span class="flex-grow font-medium leading-tight truncate text-slate-700">${row.event}</span>
+                        <div class="px-2 py-1.5 flex items-center gap-2 ${row.color || ''}">
+                            <span class="w-16 flex-shrink-0 font-bold">${row.time}</span>
+                            <span class="flex-grow font-medium text-slate-700">${row.event}</span>
                         </div>
                     `;
                 });
@@ -334,15 +237,9 @@
                 grid.innerHTML += dayHtml;
             });
 
-            const container = document.getElementById('export-container');
-            
-            html2canvas(container, {
-                scale: 2,
-                useCORS: true,
-                backgroundColor: "#ffffff"
-            }).then(canvas => {
+            html2canvas(document.getElementById('export-container'), { scale: 2 }).then(canvas => {
                 const link = document.createElement('a');
-                link.download = 'paleoHCS_Workshop_Agenda.jpg';
+                link.download = 'paleoHCS_Agenda_Update.jpg';
                 link.href = canvas.toDataURL('image/jpeg', 0.95);
                 link.click();
             });
