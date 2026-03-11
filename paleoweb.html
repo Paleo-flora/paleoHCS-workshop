@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>paleoHCS Workshop | The last 23 Ma of the HCS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; scroll-behavior: smooth; }
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-4px); }
+        .schedule-tag {
+            background: #e2e8f0;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .day-tab {
+            cursor: pointer;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+        .day-tab.active {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+            background: #eff6ff;
+        }
+        #export-container {
+            padding: 40px;
+            background: white;
+            width: 1200px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <span class="font-bold text-xl text-blue-800 tracking-tight">paleoHCS</span>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#about" class="hover:text-blue-600 transition">About</a>
+                <a href="#speakers" class="hover:text-blue-600 transition">Speakers</a>
+                <a href="#schedule" class="hover:text-blue-600 transition">Schedule</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-gradient text-white py-24 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <div class="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wide uppercase bg-blue-500/20 text-blue-300 rounded-full border border-blue-500/30">
+                Workshop Announcement
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-8 tracking-tight leading-tight">
+                The last 23 Ma of the HCS: <br>
+                <span class="text-blue-400 font-light italic text-3xl md:text-5xl">a review of oceanographic, climatic and ecological features</span>
+            </h1>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-12 text-slate-300">
+                <div class="text-center">
+                    <p class="text-xs uppercase tracking-widest text-slate-500 mb-1">Lead Organizers</p>
+                    <div class="space-y-1">
+                        <p class="font-semibold text-white">
+                            <a href="https://geologie.uni-koeln.de/arbeitsgruppen/mikropalaeontolgie-palaeooekologie/team/prof-dr-patrick-grunert" target="_blank" class="hover:text-blue-400 underline decoration-blue-500/30 underline-offset-4 transition">Patrick Grunert</a> 
+                            <span class="text-slate-400 font-normal">(University of Cologne)</span>
+                        </p>
+                        <p class="font-semibold text-white">
+                            <a href="https://produccioncientifica.usal.es/investigadores/452768/detalle" target="_blank" class="hover:text-blue-400 underline decoration-blue-500/30 underline-offset-4 transition">Diana Ochoa</a> 
+                            <span class="text-slate-400 font-normal">(University of Salamanca)</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#schedule" class="bg-white text-slate-900 px-8 py-3 rounded-full font-semibold hover:bg-slate-100 transition shadow-lg border border-transparent">View Schedule</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-20 space-y-32">
+        
+        <!-- About Section -->
+        <section id="about" class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8 text-slate-900">Central Topic</h2>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 italic text-lg text-slate-700 leading-relaxed">
+                "A comprehensive review of the oceanographic, climatic, and ecological features of the Humboldt Current System (HCS) over the last 23 million years."
+            </div>
+        </section>
+
+        <!-- Summary Section -->
+        <section class="max-w-4xl mx-auto">
+            <div class="bg-blue-900 rounded-3xl p-10 text-white shadow-xl">
+                <h3 class="text-2xl font-bold mb-6 text-center">Workshop Composition</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="p-4 bg-white/10 rounded-xl">
+                        <div class="text-3xl font-bold">24</div>
+                        <div class="text-xs text-blue-200 uppercase tracking-wider">Regular Talks</div>
+                    </div>
+                    <div class="p-4 bg-white/10 rounded-xl">
+                        <div class="text-3xl font-bold">4</div>
+                        <div class="text-xs text-blue-200 uppercase tracking-wider">Keynote Talks</div>
+                    </div>
+                    <div class="p-4 bg-white/10 rounded-xl">
+                        <div class="text-3xl font-bold">6</div>
+                        <div class="text-xs text-blue-200 uppercase tracking-wider">Debate Sessions</div>
+                    </div>
+                    <div class="p-4 bg-white/10 rounded-xl">
+                        <div class="text-3xl font-bold">3</div>
+                        <div class="text-xs text-blue-200 uppercase tracking-wider">Intense Days</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Keynote Speakers -->
+        <section id="speakers">
+            <h2 class="text-3xl font-bold mb-12 text-center text-slate-900">Confirmed Keynote Speakers</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card p-8 border-t-4 border-blue-600">
+                    <h3 class="text-xl font-bold mb-2 text-slate-800 underline underline-offset-4 decoration-slate-200">
+                        <a href="https://www.awi.de/en/about-us/organisation/staff/single-view/frank-lamy.html" target="_blank" class="hover:text-blue-600">Frank Lamy</a>
+                    </h3>
+                    <p class="text-blue-600 font-semibold text-sm mb-4 uppercase tracking-wide">Paleoceanography</p>
+                    <p class="text-slate-600 text-sm">Providing expert insights into the long-term oceanographic evolution of the system.</p>
+                </div>
+                <div class="card p-8 border-t-4 border-blue-600">
+                    <h3 class="text-xl font-bold mb-2 text-slate-800 underline underline-offset-4 decoration-slate-200">
+                        <a href="https://idea-m.com/index.php/elisa-maliverno/" target="_blank" class="hover:text-blue-600">Elisa Malinverno</a>
+                    </h3>
+                    <p class="text-blue-600 font-semibold text-sm mb-4 uppercase tracking-wide">Paleoecosystem Perspective</p>
+                    <p class="text-slate-600 text-sm">Focusing on Diatoms and the biological response to historical climate shifts.</p>
+                </div>
+                <div class="card p-8 border-t-4 border-blue-600">
+                    <h3 class="text-xl font-bold mb-2 text-slate-800 underline underline-offset-4 decoration-slate-200">
+                        <a href="https://pierre-sepulchre.github.io/" target="_blank" class="hover:text-blue-600">Pierre Sepulchre</a>
+                    </h3>
+                    <p class="text-blue-600 font-semibold text-sm mb-4 uppercase tracking-wide">Modeller Perspective</p>
+                    <p class="text-slate-600 text-sm">Linking Ocean-Atmosphere dynamics, Andes uplift, and climate during the Miocene.</p>
+                </div>
+            </div>
+            <p class="mt-8 text-center text-slate-400 text-sm italic">4th Keynote Speaker — Presentation on Day 3 Morning</p>
+        </section>
+
+        <!-- Schedule Section -->
+        <section id="schedule" class="max-w-5xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                <div class="text-center md:text-left">
+                    <h2 class="text-3xl font-bold text-slate-900">Full Workshop Agenda</h2>
+                    <p class="text-slate-500 italic">Select a day to view details</p>
+                </div>
+                <button onclick="downloadAgendaChart()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold flex items-center justify-center gap-2 shadow-sm transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    Download Agenda (JPG)
+                </button>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="flex border-b border-slate-200 bg-slate-50">
+                    <div onclick="showDay(1)" id="tab-1" class="day-tab active flex-1 text-center">Day 1: Records & Foundations</div>
+                    <div onclick="showDay(2)" id="tab-2" class="day-tab flex-1 text-center">Day 2: Ecological Integration</div>
+                    <div onclick="showDay(3)" id="tab-3" class="day-tab flex-1 text-center">Day 3: Future & Synthesis</div>
+                </div>
+
+                <div id="day-content" class="divide-y divide-slate-100">
+                    <!-- Content injected by JS -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Hidden Export Template for html2canvas -->
+    <div id="export-wrapper" style="position: absolute; left: -9999px;">
+        <div id="export-container" class="bg-white p-10 font-sans">
+            <h1 class="text-3xl font-bold text-blue-900 mb-2">paleoHCS Workshop 2026</h1>
+            <p class="text-slate-500 mb-8 border-b pb-4">Comprehensive 3-Day Program Overview</p>
+            <div id="export-grid" class="grid grid-cols-3 gap-6"></div>
+        </div>
+    </div>
+
+    <footer class="bg-slate-900 text-slate-500 py-12 px-4 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-sm">© 2026 paleoHCS Workshop. Organized by University of Cologne and University of Salamanca.</p>
+        </div>
+    </footer>
+
+    <script>
+        const agendaData = {
+            1: {
+                title: "Oceanographic Evolution & Data Gaps",
+                rows: [
+                    { time: "09:00 AM", event: "Welcome & Housekeeping", type: "Intro", desc: "Safety, Wifi, Rules of engagement (15 mins)", color: "bg-slate-100" },
+                    { time: "09:15 AM", event: "Keynote Talk: Frank Lamy", type: "Keynote", desc: "Long-term oceanographic evolution", color: "bg-amber-50" },
+                    { time: "09:55 AM", event: "Q&A Session", type: "Discussion", desc: "Questions for Frank Lamy (10 mins)", color: "bg-amber-50/50" },
+                    { time: "10:05 AM", event: "Morning Talk Block", type: "3 Talks", desc: "Presentation series (20m each)", color: "" },
+                    { time: "11:05 AM", event: "Coffee Break", type: "Break", desc: "", color: "bg-slate-50" },
+                    { time: "11:25 AM", event: "Debate Session I", type: "Debate", desc: "Topic: Record Gaps & Gaps in Knowledge", color: "bg-blue-50" },
+                    { time: "12:30 PM", event: "Lunch Break", type: "Break", desc: "", color: "bg-slate-100" },
+                    { time: "01:50 PM", event: "Keynote Talk: Pierre Sepulchre", type: "Keynote", desc: "Ocean-Atmosphere Dynamics & Andes Uplift", color: "bg-amber-50" },
+                    { time: "02:30 PM", event: "Q&A Session", type: "Discussion", desc: "Questions for Pierre Sepulchre (10 mins)", color: "bg-amber-50/50" },
+                    { time: "02:40 PM", event: "Afternoon Talk Block A", type: "3 Talks", desc: "Series 1 (20m each)", color: "" },
+                    { time: "03:40 PM", event: "Short Break", type: "Break", desc: "", color: "bg-slate-50" },
+                    { time: "04:00 PM", event: "Afternoon Talk Block B", type: "2 Talks", desc: "Extra Session (20m each)", color: "bg-slate-50/30" },
+                    { time: "04:40 PM", event: "Debate Session II", type: "Debate", desc: "Topic: Proxy-Model Integration Challenges", color: "bg-blue-50" },
+                    { time: "05:30 PM", event: "Daily Wrap-up", type: "Closing", desc: "Brief recap", color: "" }
+                ]
+            },
+            2: {
+                title: "Ecological Proxies & Big Data",
+                rows: [
+                    { time: "09:00 AM", event: "Morning Briefing", type: "Intro", desc: "Recap of Day 1 (15 mins)", color: "bg-slate-100" },
+                    { time: "09:15 AM", event: "Keynote Talk: Elisa Malinverno", type: "Keynote", desc: "Diatoms & Paleoecosystems", color: "bg-amber-50" },
+                    { time: "09:55 AM", event: "Q&A Session", type: "Discussion", desc: "Questions for Elisa Malinverno (10 mins)", color: "bg-amber-50/50" },
+                    { time: "10:05 AM", event: "Morning Talk Block", type: "3 Talks", desc: "Presentation series (20m each)", color: "" },
+                    { time: "11:05 AM", event: "Coffee Break", type: "Break", desc: "", color: "bg-slate-50" },
+                    { time: "11:25 AM", event: "Debate Session III", type: "Debate", desc: "Topic: Big Data & Open Accessibility", color: "bg-blue-50" },
+                    { time: "12:30 PM", event: "Lunch Break", type: "Break", desc: "", color: "bg-slate-100" },
+                    { time: "01:50 PM", event: "Afternoon Talk Block A", type: "3 Talks", desc: "Presentation series (20m each)", color: "" },
+                    { time: "02:50 PM", event: "Afternoon Talk Block B", type: "2 Talks", desc: "Additional session (20m each)", color: "bg-slate-50/30" },
+                    { time: "03:30 PM", event: "Group Photo Session", type: "Event", desc: "Main entrance stairs (15 mins)", color: "bg-emerald-50" },
+                    { time: "03:45 PM", event: "Short Break", type: "Break", desc: "", color: "bg-slate-50" },
+                    { time: "04:05 PM", event: "Debate Session IV", type: "Debate", desc: "Topic: Ecological responses to climate shifts", color: "bg-blue-50" },
+                    { time: "05:00 PM", event: "Daily Wrap-up", type: "Closing", desc: "", color: "" },
+                    { time: "05:20 PM", event: "Informal Social Gathering", type: "Social", desc: "Refreshments on your own nearby", color: "bg-slate-800 text-white" }
+                ]
+            },
+            3: {
+                title: "Future Horizons & Special Issues",
+                rows: [
+                    { time: "09:00 AM", event: "Morning Briefing", type: "Intro", desc: "Agenda for the final day (15 mins)", color: "bg-slate-100" },
+                    { time: "09:15 AM", event: "Keynote Talk: 4th Speaker (TBD)", type: "Keynote", desc: "Strategic Outlook or New Frontier in HCS Studies", color: "bg-amber-50" },
+                    { time: "09:55 AM", event: "Q&A Session", type: "Discussion", desc: "Questions for Keynote Speaker (10 mins)", color: "bg-amber-50/50" },
+                    { time: "10:05 AM", event: "Morning Talk Block", type: "3 Talks", desc: "Final technical series (20m each)", color: "" },
+                    { time: "11:05 AM", event: "Coffee Break", type: "Break", desc: "", color: "bg-slate-50" },
+                    { time: "11:25 AM", event: "Debate Session V", type: "Debate", desc: "Topic: Joint Funding (EU Schemes)", color: "bg-blue-50" },
+                    { time: "12:30 PM", event: "Lunch Break", type: "Break", desc: "", color: "bg-slate-100" },
+                    { time: "01:50 PM", event: "Afternoon Talk Block", type: "5 Talks", desc: "Combined Presentation Series (20m each)", color: "" },
+                    { time: "03:30 PM", event: "Short Break", type: "Break", desc: "", color: "bg-slate-50" },
+                    { time: "03:50 PM", event: "Debate Session VI", type: "Debate", desc: "Strategy: Special Issue & Consolidating future collaboration", color: "bg-blue-50" },
+                    { time: "04:40 PM", event: "Conclusions & Final Thoughts", type: "Closing", desc: "Closing remarks by Organizers", color: "bg-slate-900 text-white" }
+                ]
+            }
+        };
+
+        function showDay(dayNum) {
+            document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(`tab-${dayNum}`).classList.add('active');
+
+            const content = document.getElementById('day-content');
+            const data = agendaData[dayNum];
+            
+            let html = `<div class="bg-blue-50 px-6 py-3 font-bold text-blue-800 text-sm tracking-wide">THEME: ${data.title}</div>`;
+            
+            data.rows.forEach(row => {
+                html += `
+                    <div class="px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-2 ${row.color}">
+                        <span class="font-semibold w-24 text-sm">${row.time}</span>
+                        <div class="flex-grow">
+                            <div class="font-bold text-slate-800">${row.event}</div>
+                            <div class="text-xs text-slate-500">${row.desc}</div>
+                        </div>
+                        <span class="schedule-tag whitespace-nowrap">${row.type}</span>
+                    </div>
+                `;
+            });
+            
+            content.innerHTML = html;
+        }
+
+        async function downloadAgendaChart() {
+            const grid = document.getElementById('export-grid');
+            grid.innerHTML = '';
+            
+            [1, 2, 3].forEach(day => {
+                const dayData = agendaData[day];
+                let dayHtml = `
+                    <div class="border rounded-xl overflow-hidden shadow-sm">
+                        <div class="bg-blue-900 text-white p-3 font-bold text-sm">Day ${day}: ${dayData.title}</div>
+                        <div class="text-[10px] divide-y">
+                `;
+                dayData.rows.forEach(row => {
+                    dayHtml += `
+                        <div class="p-2 flex justify-between gap-4 ${row.color || ''}">
+                            <span class="font-bold w-12">${row.time}</span>
+                            <span class="flex-grow">${row.event}</span>
+                        </div>
+                    `;
+                });
+                dayHtml += `</div></div>`;
+                grid.innerHTML += dayHtml;
+            });
+
+            const wrapper = document.getElementById('export-wrapper');
+            html2canvas(document.getElementById('export-container')).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'paleoHCS_Workshop_Agenda.jpg';
+                link.href = canvas.toDataURL('image/jpeg', 0.9);
+                link.click();
+            });
+        }
+
+        window.onload = () => showDay(1);
+    </script>
+</body>
+</html>
