@@ -16,9 +16,8 @@
         .day-tab { cursor: pointer; padding: 1rem 2rem; font-weight: 600; transition: all 0.2s; border-bottom: 2px solid transparent; }
         .day-tab.active { color: #2563eb; border-bottom-color: #2563eb; background: #eff6ff; }
         
-        /* Event Types Colors */
         .bg-keynote { background-color: #dbeafe !important; } 
-        .bg-debate { background-color: #fffff0 !important; } /* Ivory Color */
+        .bg-debate { background-color: #fffff0 !important; } 
         .bg-break { background-color: #f8fafc !important; } 
         .bg-social { background-color: #3b82f6 !important; color: white !important; }
         .bg-wrap { background-color: #f1f5f9 !important; }
@@ -29,11 +28,11 @@
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
             <span class="font-bold text-xl text-blue-800 tracking-tight">paleoHCS</span>
-            <div class="hidden md:flex space-x-8 text-sm font-medium">
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
                 <a href="#speakers" class="hover:text-blue-600 transition">Speakers</a>
-                <a href="#stats" class="hover:text-blue-600 transition">At a Glance</a>
-                <a href="#schedule" class="hover:text-blue-600 transition">Schedule</a>
+                <a href="#venue" class="hover:text-blue-600 transition">Venue</a> <a href="#schedule" class="hover:text-blue-600 transition">Schedule</a>
                 <a href="#organizers" class="hover:text-blue-600 transition">Organizers</a>
+                <a href="abstract.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Abstract Submission</a>
             </div>
         </div>
     </nav>
@@ -72,6 +71,14 @@
             </div>
         </section>
 
+        <section id="speakers" class="space-y-12">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-slate-900">Keynote Speakers</h2>
+                <div class="h-1 w-20 bg-blue-600 mx-auto mt-4"></div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6" id="speaker-grid"></div>
+        </section>
+
         <section id="schedule" class="max-w-5xl mx-auto">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
                 <div>
@@ -83,7 +90,6 @@
                     <button onclick="downloadAgendaImage()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-semibold text-sm">Download PNG</button>
                 </div>
             </div>
-            
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                 <div class="flex border-b border-slate-200 bg-slate-50">
                     <div onclick="showDay(1)" id="tab-1" class="day-tab active flex-1 text-center">Day 1</div>
@@ -91,6 +97,25 @@
                     <div onclick="showDay(3)" id="tab-3" class="day-tab flex-1 text-center">Day 3</div>
                 </div>
                 <div id="day-content" class="divide-y divide-slate-100"></div>
+            </div>
+        </section>
+
+        <section id="organizers" class="space-y-12 py-12 border-t border-slate-100">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-slate-900">Lead Organizers</h2>
+                <div class="h-1 w-20 bg-blue-600 mx-auto mt-4"></div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-2xl mx-auto">
+                <div class="card p-8 text-center bg-slate-50 border border-slate-100">
+                    <h4 class="font-bold text-xl text-slate-800">Patrick Grunert</h4>
+                    <p class="text-blue-600 font-medium mb-4">University of Cologne</p>
+                    <a href="https://geologie.uni-koeln.de/arbeitsgruppen/mikropalaeontolgie-palaeooekologie/team/prof-dr-patrick-grunert" target="_blank" class="bg-white border border-blue-200 px-6 py-2 rounded-full text-blue-700 text-sm hover:bg-blue-50 transition font-semibold">Visit Website</a>
+                </div>
+                <div class="card p-8 text-center bg-slate-50 border border-slate-100">
+                    <h4 class="font-bold text-xl text-slate-800">Diana Ochoa</h4>
+                    <p class="text-blue-600 font-medium mb-4">University of Salamanca</p>
+                    <a href="https://produccioncientifica.usal.es/investigadores/452768/detalle" target="_blank" class="bg-white border border-blue-200 px-6 py-2 rounded-full text-blue-700 text-sm hover:bg-blue-50 transition font-semibold">Visit Website</a>
+                </div>
             </div>
         </section>
     </main>
@@ -101,64 +126,56 @@
 
     <script>
         const agendaData = {
-            1: {
-                title: "Day 1: Oceanographic Evolution (Sept 23rd)",
-                rows: [
-                    { time: "09:00 AM", event: "Welcome & Housekeeping", type: "Intro", color: "bg-break" },
-                    { time: "09:15 AM", event: "Keynote: Frank Lamy", type: "Keynote", color: "bg-keynote" },
-                    { time: "10:05 AM", event: "Morning Talk Block (3)", type: "Talks", count: 3 },
-                    { time: "11:05 AM", event: "Coffee Break", type: "Break", color: "bg-break" },
-                    { time: "11:25 AM", event: "Debate I: Record Gaps", type: "Debate", color: "bg-debate" },
-                    { time: "12:30 PM", event: "Lunch Break", type: "Break", color: "bg-break" },
-                    { time: "01:50 PM", event: "Keynote: Pierre Sepulchre", type: "Keynote", color: "bg-keynote" },
-                    { time: "02:40 PM", event: "Afternoon Talk Block A (3)", type: "Talks", count: 3 },
-                    { time: "03:40 PM", event: "Short Break", type: "Break", color: "bg-break" },
-                    { time: "04:00 PM", event: "Afternoon Talk Block B (2)", type: "Talks", count: 2 },
-                    { time: "04:40 PM", event: "Debate II: Proxy-Model", type: "Debate", color: "bg-debate" },
-                    { time: "05:30 PM", event: "Daily Wrap-up", type: "Closing", color: "bg-wrap" },
-                    { time: "07:00 PM", event: "Social Dinner", type: "Social", color: "bg-social" }
-                ]
-            },
-            2: {
-                title: "Day 2: Ecological Integration (Sept 24th)",
-                rows: [
-                    { time: "09:00 AM", event: "Morning Briefing", type: "Intro", color: "bg-break" },
-                    { time: "09:15 AM", event: "Keynote: Elisa Malinverno", type: "Keynote", color: "bg-keynote" },
-                    { time: "10:05 AM", event: "Morning Talk Block (3)", type: "Talks", count: 3 },
-                    { time: "11:05 AM", event: "Coffee Break", type: "Break", color: "bg-break" },
-                    { time: "11:25 AM", event: "Debate III: Ecological Dynamics", type: "Debate", color: "bg-debate" },
-                    { time: "12:30 PM", event: "Lunch Break", type: "Break", color: "bg-break" },
-                    { time: "01:50 PM", event: "Keynote: 4th Speaker (TBD)", type: "Keynote", color: "bg-keynote" },
-                    { time: "02:40 PM", event: "Afternoon Talk Block A (3)", type: "Talks", count: 3 },
-                    { time: "03:40 PM", event: "Short Break", type: "Break", color: "bg-break" },
-                    { time: "04:00 PM", event: "Afternoon Talk Block B (2)", type: "Debate", color: "" },
-                    { time: "04:40 PM", event: "Debate IV: Ocean-Climate Dynamics", type: "Debate", color: "bg-debate" },
-                    { time: "05:30 PM", event: "Daily Wrap-up", type: "Closing", color: "bg-wrap" },
-                    { time: "07:00 PM", event: "Informal Social Gathering", type: "Social", color: "bg-social" }
-                ]
-            },
-            3: {
-                title: "Day 3: Future & Synthesis (Sept 25th)",
-                rows: [
-                    { time: "09:00 AM", event: "Morning Briefing", type: "Intro", color: "bg-break" },
-                    { time: "09:15 AM", event: "Morning Talk Block (5)", type: "Talks", count: 5 },
-                    { time: "10:55 AM", event: "Group Photo Session", type: "Social", color: "bg-social" },
-                    { time: "11:05 AM", event: "Coffee Break", type: "Break", color: "bg-break" },
-                    { time: "11:25 AM", event: "Debate V: Science Dissemination Strategy", type: "Debate", color: "bg-debate" },
-                    { time: "12:30 PM", event: "Lunch Break", type: "Break", color: "bg-break" },
-                    { time: "01:50 PM", event: "Afternoon Talk Block (3)", type: "Talks", count: 3 },
-                    { time: "02:50 PM", event: "Poster Presentation", type: "Poster", color: "bg-blue-50" },
-                    { time: "03:40 PM", event: "Short Break", type: "Break", color: "bg-break" },
-                    { time: "04:00 PM", event: "Debate VI: Joint Funding", type: "Debate", color: "bg-debate" },
-                    { time: "05:00 PM", event: "General Plenary + Conclusions", type: "Open Mic", color: "bg-wrap" },
-                    { time: "05:30 PM", event: "Closing Event", type: "Closing", color: "bg-social" }
-                ]
-            }
+            1: { title: "Day 1: Oceanographic Evolution (Sept 23rd)", rows: [
+                { time: "09:00 AM", event: "Welcome & Housekeeping", type: "Intro", color: "bg-break" },
+                { time: "09:15 AM", event: "Keynote: Frank Lamy", type: "Keynote", color: "bg-keynote" },
+                { time: "10:05 AM", event: "Morning Talk Block (3)", type: "Talks", count: 3 },
+                { time: "11:05 AM", event: "Coffee Break", type: "Break", color: "bg-break" },
+                { time: "11:25 AM", event: "Debate I: Record Gaps", type: "Debate", color: "bg-debate" },
+                { time: "12:30 PM", event: "Lunch Break", type: "Break", color: "bg-break" },
+                { time: "01:50 PM", event: "Keynote: Pierre Sepulchre", type: "Keynote", color: "bg-keynote" },
+                { time: "02:40 PM", event: "Afternoon Talk Block A (3)", type: "Talks", count: 3 },
+                { time: "03:40 PM", event: "Short Break", type: "Break", color: "bg-break" },
+                { time: "04:00 PM", event: "Afternoon Talk Block B (2)", type: "Talks", count: 2 },
+                { time: "04:40 PM", event: "Debate II: Proxy-Model", type: "Debate", color: "bg-debate" },
+                { time: "05:30 PM", event: "Daily Wrap-up", type: "Closing", color: "bg-wrap" },
+                { time: "07:00 PM", event: "Social Dinner", type: "Social", color: "bg-social" }
+            ]},
+            2: { title: "Day 2: Ecological Integration (Sept 24th)", rows: [
+                { time: "09:00 AM", event: "Morning Briefing", type: "Intro", color: "bg-break" },
+                { time: "09:15 AM", event: "Keynote: Elisa Malinverno", type: "Keynote", color: "bg-keynote" },
+                { time: "10:05 AM", event: "Morning Talk Block (3)", type: "Talks", count: 3 },
+                { time: "11:05 AM", event: "Coffee Break", type: "Break", color: "bg-break" },
+                { time: "11:25 AM", event: "Debate III: Ecological Dynamics", type: "Debate", color: "bg-debate" },
+                { time: "12:30 PM", event: "Lunch Break", type: "Break", color: "bg-break" },
+                { time: "01:50 PM", event: "Keynote: 4th Speaker (TBD)", type: "Keynote", color: "bg-keynote" },
+                { time: "02:40 PM", event: "Afternoon Talk Block A (3)", type: "Talks", count: 3 },
+                { time: "03:40 PM", event: "Short Break", type: "Break", color: "bg-break" },
+                { time: "04:00 PM", event: "Afternoon Talk Block B (2)", type: "Debate", color: "" },
+                { time: "04:40 PM", event: "Debate IV: Ocean-Climate Dynamics", type: "Debate", color: "bg-debate" },
+                { time: "05:30 PM", event: "Daily Wrap-up", type: "Closing", color: "bg-wrap" },
+                { time: "07:00 PM", event: "Informal Social Gathering", type: "Social", color: "bg-social" }
+            ]},
+            3: { title: "Day 3: Future & Synthesis (Sept 25th)", rows: [
+                { time: "09:00 AM", event: "Morning Briefing", type: "Intro", color: "bg-break" },
+                { time: "09:15 AM", event: "Morning Talk Block (5)", type: "Talks", count: 5 },
+                { time: "10:55 AM", event: "Group Photo Session", type: "Social", color: "bg-social" },
+                { time: "11:05 AM", event: "Coffee Break", type: "Break", color: "bg-break" },
+                { time: "11:25 AM", event: "Debate V: Science Dissemination Strategy", type: "Debate", color: "bg-debate" },
+                { time: "12:30 PM", event: "Lunch Break", type: "Break", color: "bg-break" },
+                { time: "01:50 PM", event: "Afternoon Talk Block (3)", type: "Talks", count: 3 },
+                { time: "02:50 PM", event: "Poster Presentation", type: "Poster", color: "bg-blue-50" },
+                { time: "03:40 PM", event: "Short Break", type: "Break", color: "bg-break" },
+                { time: "04:00 PM", event: "Debate VI: Joint Funding", type: "Debate", color: "bg-debate" },
+                { time: "05:00 PM", event: "General Plenary + Conclusions", type: "Open Mic", color: "bg-wrap" },
+                { time: "05:30 PM", event: "Closing Event", type: "Closing", color: "bg-social" }
+            ]}
         };
 
         function initApp() {
             calculateStats();
             showDay(1);
+            renderSpeakers();
         }
 
         function calculateStats() {
@@ -177,6 +194,26 @@
             document.getElementById('stat-debates').innerText = debates;
         }
 
+        function renderSpeakers() {
+            // Task 3: Updated Speaker Data
+            const speakers = [
+                { name: "Frank Lamy", url: "https://www.awi.de/en/about-us/organisation/staff/single-view/frank-lamy.html", affiliation: "Alfred Wegener Institute" },
+                { name: "Pierre Sepulchre", url: "https://pierre-sepulchre.github.io/", affiliation: "LSCE / IPSL" },
+                { name: "Elisa Malinverno", url: "https://idea-m.com/index.php/elisa-maliverno/", affiliation: "University of Milano-Bicocca" },
+                { name: "To Be Announced", url: "#", affiliation: "Keynote 4" }
+            ];
+            const grid = document.getElementById('speaker-grid');
+            grid.innerHTML = speakers.map(s => `
+                <a href="${s.url}" target="_blank" class="card p-6 text-center hover:shadow-md block">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-blue-600 text-2xl font-bold">${s.name[0]}</span>
+                    </div>
+                    <h3 class="font-bold text-slate-800">${s.name}</h3>
+                    <p class="text-xs text-blue-600 font-medium uppercase mt-1">${s.affiliation}</p>
+                </a>
+            `).join('');
+        }
+
         function showDay(dayNum) {
             document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
             document.getElementById(`tab-${dayNum}`).classList.add('active');
@@ -189,26 +226,30 @@
                         <span class="font-mono font-bold w-24 text-sm text-slate-500">${row.time}</span>
                         <div class="flex-grow font-bold text-slate-800">${row.event}</div>
                         <span class="schedule-tag">${row.type}</span>
-                    </div>
-                `;
+                    </div>`;
             });
             content.innerHTML = html;
         }
 
         function downloadExcel() {
             const wb = XLSX.utils.book_new();
-            [1, 2, 3].forEach(day => {
-                const data = agendaData[day];
-                const wsData = [ [data.title], ["Time", "Event", "Type"], ...data.rows.map(r => [r.time, r.event, r.type]) ];
-                XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(wsData), `Day ${day}`);
-            });
+            const maxRows = Math.max(...[1, 2, 3].map(day => agendaData[day].rows.length));
+            const header = ["Day 1 Time", "Day 1 Event", "Day 1 Type", "Day 2 Time", "Day 2 Event", "Day 2 Type", "Day 3 Time", "Day 3 Event", "Day 3 Type"];
+            const wsData = [header];
+            for (let i = 0; i < maxRows; i++) {
+                const row = [];
+                [1, 2, 3].forEach(day => {
+                    const entry = agendaData[day].rows[i];
+                    if (entry) { row.push(entry.time, entry.event, entry.type); } 
+                    else { row.push("", "", ""); }
+                });
+                wsData.push(row);
+            }
+            XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(wsData), "Agenda");
             XLSX.writeFile(wb, "paleoHCS_Agenda_2026.xlsx");
         }
 
-        // Task 1: Changed export file name to .png
-        function downloadAgendaImage() {
-            window.location.href = 'paleoHCS_Workshop_Agenda_2026.png';
-        }
+        function downloadAgendaImage() { window.location.href = 'paleoHCS_Workshop_Agenda_2026.png'; }
 
         window.onload = initApp;
     </script>
