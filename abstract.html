@@ -56,6 +56,13 @@
                     </div>
                 </div>
 
+                <!-- ✅ ADDED: single-file upload restriction -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-200">
+                    <label class="block text-sm font-medium mb-2">Upload Abstract File *</label>
+                    <input type="file" id="fileInput" name="file" required class="w-full">
+                    <p class="text-xs text-gray-500 mt-2">Only one file allowed per submission.</p>
+                </div>
+
                 <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-200">
                     <label class="block text-sm font-medium mb-4">Preferred Presentation Mode</label>
                     <div class="space-y-3">
@@ -169,6 +176,16 @@
             const btn = document.getElementById('submitBtn');
             const spinner = document.getElementById('submitSpinner');
             btn.disabled = true; spinner.classList.remove('hidden');
+
+            const fileInput = document.getElementById('fileInput');
+
+            // ✅ ENFORCE single file rule
+            if (fileInput.files.length > 1) {
+                alert("Only one file is allowed per submission.");
+                btn.disabled = false;
+                spinner.classList.add('hidden');
+                return;
+            }
 
             const formData = new FormData(e.target);
             const data = {
