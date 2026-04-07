@@ -18,9 +18,9 @@
         
         /* Event Types Colors */
         .bg-keynote { background-color: #dbeafe !important; } 
-        .bg-debate { background-color: #eff6ff !important; } 
+        .bg-debate { background-color: #fffff0 !important; } /* Ivory Color */
         .bg-break { background-color: #f8fafc !important; } 
-        .bg-social { background-color: #1e3a8a !important; color: white !important; }
+        .bg-social { background-color: #3b82f6 !important; color: white !important; }
         .bg-wrap { background-color: #f1f5f9 !important; }
     </style>
 </head>
@@ -76,11 +76,11 @@
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
                 <div>
                     <h2 class="text-3xl font-bold text-slate-900">Workshop Agenda</h2>
-                    <p class="text-slate-500 italic">3-Day Cleaned Program</p>
+                    <p class="text-slate-500 italic">3-Day Program</p>
                 </div>
                 <div class="flex flex-wrap gap-3">
                     <button onclick="downloadExcel()" class="bg-blue-900 hover:bg-blue-950 text-white px-5 py-2 rounded-lg font-semibold text-sm">Export Excel</button>
-                    <button onclick="downloadAgendaPDF()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-semibold text-sm">Download PDF</button>
+                    <button onclick="downloadAgendaImage()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-semibold text-sm">Download PNG</button>
                 </div>
             </div>
             
@@ -100,10 +100,9 @@
     </footer>
 
     <script>
-        // Cleaned Data: No duplications (AM AM), no Footers (nan), and Cutoff at 7:01 PM
         const agendaData = {
             1: {
-                title: "Day 1: Oceanographic Evolution",
+                title: "Day 1: Oceanographic Evolution (Sept 23rd)",
                 rows: [
                     { time: "09:00 AM", event: "Welcome & Housekeeping", type: "Intro", color: "bg-break" },
                     { time: "09:15 AM", event: "Keynote: Frank Lamy", type: "Keynote", color: "bg-keynote" },
@@ -121,36 +120,36 @@
                 ]
             },
             2: {
-                title: "Day 2: Ecological Integration",
+                title: "Day 2: Ecological Integration (Sept 24th)",
                 rows: [
                     { time: "09:00 AM", event: "Morning Briefing", type: "Intro", color: "bg-break" },
                     { time: "09:15 AM", event: "Keynote: Elisa Malinverno", type: "Keynote", color: "bg-keynote" },
                     { time: "10:05 AM", event: "Morning Talk Block (3)", type: "Talks", count: 3 },
                     { time: "11:05 AM", event: "Coffee Break", type: "Break", color: "bg-break" },
-                    { time: "11:25 AM", event: "Debate III: Big Data", type: "Debate", color: "bg-debate" },
+                    { time: "11:25 AM", event: "Debate III: Ecological Dynamics", type: "Debate", color: "bg-debate" },
                     { time: "12:30 PM", event: "Lunch Break", type: "Break", color: "bg-break" },
                     { time: "01:50 PM", event: "Keynote: 4th Speaker (TBD)", type: "Keynote", color: "bg-keynote" },
                     { time: "02:40 PM", event: "Afternoon Talk Block A (3)", type: "Talks", count: 3 },
                     { time: "03:40 PM", event: "Short Break", type: "Break", color: "bg-break" },
-                    { time: "04:00 PM", event: "Afternoon Talk Block B (2)", type: "Debate", color: "bg-debate" },
-                    { time: "04:40 PM", event: "Debate IV: Ocean-Climate Dynamics", type: "Closing", color: "bg-wrap" },
-                    { time: "05:30 PM", event: "Daily Wrap-up", type: "Social", color: "bg-social" },
+                    { time: "04:00 PM", event: "Afternoon Talk Block B (2)", type: "Debate", color: "" },
+                    { time: "04:40 PM", event: "Debate IV: Ocean-Climate Dynamics", type: "Debate", color: "bg-debate" },
+                    { time: "05:30 PM", event: "Daily Wrap-up", type: "Closing", color: "bg-wrap" },
                     { time: "07:00 PM", event: "Informal Social Gathering", type: "Social", color: "bg-social" }
                 ]
             },
             3: {
-                title: "Day 3: Future & Synthesis",
+                title: "Day 3: Future & Synthesis (Sept 25th)",
                 rows: [
                     { time: "09:00 AM", event: "Morning Briefing", type: "Intro", color: "bg-break" },
                     { time: "09:15 AM", event: "Morning Talk Block (5)", type: "Talks", count: 5 },
                     { time: "10:55 AM", event: "Group Photo Session", type: "Social", color: "bg-social" },
                     { time: "11:05 AM", event: "Coffee Break", type: "Break", color: "bg-break" },
-                    { time: "11:25 AM", event: "Debate VI: Science Strategy", type: "Debate", color: "bg-debate" },
+                    { time: "11:25 AM", event: "Debate V: Science Dissemination Strategy", type: "Debate", color: "bg-debate" },
                     { time: "12:30 PM", event: "Lunch Break", type: "Break", color: "bg-break" },
                     { time: "01:50 PM", event: "Afternoon Talk Block (3)", type: "Talks", count: 3 },
                     { time: "02:50 PM", event: "Poster Presentation", type: "Poster", color: "bg-blue-50" },
                     { time: "03:40 PM", event: "Short Break", type: "Break", color: "bg-break" },
-                    { time: "04:00 PM", event: "Debate V: Joint Funding", type: "Debate", color: "bg-debate" },
+                    { time: "04:00 PM", event: "Debate VI: Joint Funding", type: "Debate", color: "bg-debate" },
                     { time: "05:00 PM", event: "General Plenary + Conclusions", type: "Open Mic", color: "bg-wrap" },
                     { time: "05:30 PM", event: "Closing Event", type: "Closing", color: "bg-social" }
                 ]
@@ -203,11 +202,12 @@
                 const wsData = [ [data.title], ["Time", "Event", "Type"], ...data.rows.map(r => [r.time, r.event, r.type]) ];
                 XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(wsData), `Day ${day}`);
             });
-            XLSX.writeFile(wb, "paleoHCS_Agenda_Cleaned_2026.xlsx");
+            XLSX.writeFile(wb, "paleoHCS_Agenda_2026.xlsx");
         }
 
-        function downloadAgendaPDF() {
-            window.location.href = 'paleoHCS_Workshop_Agenda_2026.pdf';
+        // Task 1: Changed export file name to .png
+        function downloadAgendaImage() {
+            window.location.href = 'paleoHCS_Workshop_Agenda_2026.png';
         }
 
         window.onload = initApp;
