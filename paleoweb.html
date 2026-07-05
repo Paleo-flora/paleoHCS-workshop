@@ -79,6 +79,39 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6" id="speaker-grid"></div>
         </section>
 
+        <section id="venue" class="space-y-12 py-12 border-t border-slate-100">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-slate-900">Venue Information</h2>
+                <div class="h-1 w-20 bg-blue-600 mx-auto mt-4"></div>
+            </div>
+            <div class="card p-8 bg-white max-w-4xl mx-auto space-y-6 shadow-sm border border-slate-100">
+                <div>
+                    <h3 class="font-bold text-xl text-slate-800">Institute of Geology and Mineralogy, University of Cologne</h3>
+                    <p class="text-slate-600 mt-1"><strong>Address:</strong> Zülpicher Str. 49b, 50674 Cologne, Germany.</p>
+                    <p class="mt-2"><a href="https://geologie.uni-koeln.de/kontakt" target="_blank" class="text-blue-600 hover:underline font-medium inline-flex items-center">Institutional Website & Contact &rarr;</a></p>
+                </div>
+                
+                <div class="border-t border-slate-100 pt-6 space-y-4">
+                    <h4 class="font-bold text-lg text-slate-800">How to get there:</h4>
+                    <p class="text-slate-600 leading-relaxed">The institute is close to <strong>Köln Süd</strong> and <strong>Dasselstraße/Bf Süd</strong>, both of which are convenient public-transport stops.</p>
+                    
+                    <ul class="space-y-3 text-slate-600 pl-4 list-disc">
+                        <li><strong>From Cologne Central Station (Köln Hbf):</strong> take a regional train to Köln Süd (about 7 minutes), then walk a short distance to Zülpicher Str. 49b. You can also take Tram 18 toward Klettenberg/Bonn and get off at Eifelwall, or use Tram 9 toward Sülz and get off at Dasselstraße/Bf Süd.</li>
+                        <li><strong>From the Central Bus Station (ZOB):</strong> since it is next to Köln Hbf, use the same options from the central station.</li>
+                        <li><strong>From Cologne Bonn Airport (CGN):</strong> take S13 to Cologne central station, then continue by regional train to Köln Süd or by tram as above; total travel time is around 30 minutes to a little under 45 minutes depending on the connection.</li>
+                    </ul>
+                </div>
+
+                <div class="border-t border-slate-100 pt-6 space-y-3">
+                    <h4 class="font-bold text-slate-800">Still worried about getting lost? Additional info:</h4>
+                    <ul class="space-y-2 text-slate-600">
+                        <li>&bull; <a href="https://geomet.uni-koeln.de/en/institute/how-to-get-here" target="_blank" class="text-blue-600 hover:underline font-medium">Institutional "how to get here" info with map</a></li>
+                        <li class="mt-2">&bull; <strong>Useful landmarks for international visitors:</strong> The institute is located close to Köln Süd Station, the University of Cologne campus, and the GeoMuseum, all of which are well-known local landmarks and easy to identify on maps or by asking for directions. (<a href="https://www.museen.koeln/en/visit/museums/geomuseum" target="_blank" class="text-blue-600 hover:underline font-medium">GeoMuseum Website</a>)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <section id="schedule" class="max-w-5xl mx-auto">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
                 <div>
@@ -162,7 +195,7 @@
                 { time: "10:55 AM", event: "Group Photo Session", type: "Social", color: "bg-social" },
                 { time: "11:05 AM", event: "Coffee Break", type: "Break", color: "bg-break" },
                 { time: "11:25 AM", event: "Debate V: Science Dissemination Strategy", type: "Debate", color: "bg-debate" },
-                { time: "12:30 PM", event: "Lunch Break", type: "Break", color: "bg-break" },
+                { time: "12:30 PM", environment: "Lunch Break", type: "Break", color: "bg-break" },
                 { time: "01:50 PM", event: "Afternoon Talk Block (3)", type: "Talks", count: 3 },
                 { time: "02:50 PM", event: "Poster Presentation", type: "Poster", color: "bg-blue-50" },
                 { time: "03:40 PM", event: "Short Break", type: "Break", color: "bg-break" },
@@ -195,7 +228,6 @@
         }
 
         function renderSpeakers() {
-            // Task 3: Updated Speaker Data
             const speakers = [
                 { name: "Frank Lamy", url: "https://www.awi.de/en/about-us/organisation/staff/single-view/frank-lamy.html", affiliation: "Alfred Wegener Institute" },
                 { name: "Pierre Sepulchre", url: "https://pierre-sepulchre.github.io/", affiliation: "LSCE / IPSL" },
