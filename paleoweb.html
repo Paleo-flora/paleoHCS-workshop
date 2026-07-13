@@ -6,8 +6,6 @@
     <title>paleoHCS Workshop | The last 23 Ma of the HCS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; scroll-behavior: smooth; }
@@ -23,15 +21,6 @@
         .bg-break { background-color: #f8fafc !important; } 
         .bg-social { background-color: #3b82f6 !important; color: white !important; }
         .bg-wrap { background-color: #f1f5f9 !important; }
-
-        /* Custom inputs matching the page style */
-        .custom-checkbox:checked {
-            background-color: #2563eb;
-            border-color: #2563eb;
-        }
-        .form-card {
-            border-top: 6px solid #2563eb;
-        }
     </style>
 </head>
 <body>
@@ -39,11 +28,9 @@
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
         <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
             <span class="font-bold text-xl text-blue-800 tracking-tight">paleoHCS</span>
-            <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
                 <a href="#speakers" class="hover:text-blue-600 transition">Speakers</a>
-                <a href="#venue" class="hover:text-blue-600 transition">Venue</a> 
-                <a href="#schedule" class="hover:text-blue-600 transition">Schedule</a>
-                <a href="#Dietary" class="hover:text-blue-600 transition font-semibold text-blue-600">Dietary Requirements</a>
+                <a href="#venue" class="hover:text-blue-600 transition">Venue</a> <a href="#schedule" class="hover:text-blue-600 transition">Schedule</a>
                 <a href="#organizers" class="hover:text-blue-600 transition">Organizers</a>
                 <a href="abstract.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Abstract Submission</a>
             </div>
@@ -59,7 +46,6 @@
             <p class="text-slate-300 text-lg mb-10 max-w-2xl mx-auto">A comprehensive 3-day workshop gathering global experts to discuss the evolution of the Humboldt Current System.</p>
             <div class="flex flex-wrap justify-center gap-4">
                 <a href="#schedule" class="bg-white text-slate-900 px-8 py-3 rounded-full font-semibold hover:bg-slate-100 transition shadow-lg">View Schedule</a>
-                <a href="#Dietary" class="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition shadow-lg">Dietary Registry</a>
             </div>
         </div>
     </header>
@@ -146,267 +132,6 @@
             </div>
         </section>
 
-        <!-- DIETARY REQUIREMENTS & FOOD ALLERGIES SECTION -->
-        <section id="Dietary" class="space-y-12 py-12 border-t border-slate-100">
-            <div class="text-center">
-                <h2 class="text-3xl font-bold text-slate-900">Dietary Requirements & Food Allergies</h2>
-                <p class="text-sm text-slate-500 mt-2">Workshop Logistics and Catering Operations</p>
-                <div class="h-1 w-20 bg-blue-600 mx-auto mt-4"></div>
-            </div>
-
-            <!-- Deadline Warning Banner -->
-            <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg shadow-sm max-w-3xl mx-auto flex items-start space-x-3">
-                <div class="text-amber-600 mt-0.5">
-                    <i class="fa-solid fa-triangle-exclamation text-lg"></i>
-                </div>
-                <div>
-                    <h3 class="text-sm font-semibold text-amber-900">Urgent: Planning Deadline</h3>
-                    <p class="text-xs text-amber-700 mt-1">
-                        To coordinate lunch buffers, coffee breaks, and dinners with our academic catering service, please complete this registry before <span class="font-bold underline">July 23rd</span>.
-                    </p>
-                </div>
-            </div>
-
-            <div class="max-w-3xl mx-auto space-y-4">
-                <!-- Outer Form Container -->
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-slate-200 form-card p-6 md:p-8">
-                    <div class="flex justify-between items-start mb-6">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-800">Dietary Registry</h3>
-                            <p class="text-xs text-slate-500 mt-1">Please provide your details below. Your submission will be handled securely.</p>
-                        </div>
-                        <!-- Admin Access Trigger -->
-                        <button onclick="toggleAdminPanel()" class="text-slate-400 hover:text-blue-600 transition p-2" title="Google Form Link Settings">
-                            <i class="fa-solid fa-gears text-lg"></i>
-                        </button>
-                    </div>
-
-                    <!-- Setup Connection Panel (Collapsible) -->
-                    <div id="adminPanel" class="hidden bg-slate-50 border border-slate-200 rounded-lg p-5 mb-6 space-y-4">
-                        <div class="flex justify-between items-center pb-2 border-b border-slate-200">
-                            <h4 class="font-bold text-sm text-slate-700 flex items-center gap-1.5">
-                                <i class="fa-brands fa-google-drive text-blue-600"></i> Setup Google Form Connection (No Code)
-                            </h4>
-                            <span id="connectionBadge" class="bg-slate-200 text-slate-600 text-[10px] uppercase font-extrabold px-2 py-0.5 rounded-full">
-                                Not Connected
-                            </span>
-                        </div>
-                        
-                        <div class="bg-blue-50 border border-blue-100 p-3 rounded text-xs text-blue-800 space-y-1.5 leading-relaxed">
-                            <p class="font-bold"><i class="fa-solid fa-circle-info mr-1"></i> How to map your Google Form questions:</p>
-                            <ol class="list-decimal pl-4 space-y-1">
-                                <li>Open your Google Form. Click the three dots (top right) and select <b>"Get pre-filled link"</b>.</li>
-                                <li>Type short placeholder words in your fields, click <b>"Get link"</b> at the bottom, and copy it.</li>
-                                <li>Paste that link in the box below. We will auto-extract your form IDs instantly!</li>
-                            </ol>
-                        </div>
-
-                        <div>
-                            <label class="block text-[11px] font-bold text-slate-600 uppercase tracking-wider mb-1">Paste Pre-filled Google Form URL</label>
-                            <input 
-                                type="text" 
-                                id="gformPrefilledUrl" 
-                                placeholder="e.g. https://docs.google.com/forms/d/e/.../viewform?entry.123=Name&entry.456=Email..." 
-                                class="w-full border border-slate-300 rounded px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                                oninput="autoExtractFormKeys()"
-                            >
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
-                            <div>
-                                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Google Form Submit URL</label>
-                                <input 
-                                    type="text" 
-                                    id="gformSubmitUrl" 
-                                    placeholder="Automatically generated" 
-                                    readonly
-                                    class="w-full bg-slate-100 border border-slate-300 rounded px-3 py-1.5 text-xs text-slate-500 cursor-not-allowed focus:outline-none"
-                                >
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Name Entry ID</label>
-                                <input 
-                                    type="text" 
-                                    id="entryName" 
-                                    placeholder="e.g. entry.12345" 
-                                    class="w-full border border-slate-300 rounded px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                                >
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Email Entry ID</label>
-                                <input 
-                                    type="text" 
-                                    id="entryEmail" 
-                                    placeholder="e.g. entry.67890" 
-                                    class="w-full border border-slate-300 rounded px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                                >
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Dietary Spec. Entry ID</label>
-                                <input 
-                                    type="text" 
-                                    id="entryAllergies" 
-                                    placeholder="e.g. entry.11223" 
-                                    class="w-full border border-slate-300 rounded px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                                >
-                            </div>
-                            <div class="md:col-span-2">
-                                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Additional Details Entry ID</label>
-                                <input 
-                                    type="text" 
-                                    id="entryDetails" 
-                                    placeholder="e.g. entry.44556" 
-                                    class="w-full border border-slate-300 rounded px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                                >
-                            </div>
-                        </div>
-
-                        <div class="flex space-x-2 pt-2">
-                            <button onclick="saveGoogleFormConfig()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-4 py-2 rounded transition shadow-sm uppercase tracking-wide">
-                                Save Connection
-                            </button>
-                            <button onclick="disconnectGoogleForm()" id="disconnectBtn" class="hidden px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 rounded font-bold text-xs uppercase tracking-wide transition">
-                                Disconnect
-                            </button>
-                        </div>
-                        <div id="connectionMessage" class="hidden text-xs font-semibold p-2.5 rounded text-center"></div>
-                    </div>
-
-                    <!-- The Real Interactive Form -->
-                    <form id="workshopDietaryForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-semibold text-slate-700 mb-1.5">
-                                    Full Name <span class="text-red-500">*</span>
-                                </label>
-                                <input 
-                                    type="text" 
-                                    id="fullName"
-                                    required
-                                    placeholder="e.g. Dr. Charles Darwin"
-                                    class="w-full border border-slate-300 rounded-lg px-4 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                                >
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-slate-700 mb-1.5">
-                                    Email Address <span class="text-red-500">*</span>
-                                </label>
-                                <input 
-                                    type="email" 
-                                    id="emailAddress"
-                                    required
-                                    placeholder="e.g. Darwin@beagle.uk"
-                                    class="w-full border border-slate-300 rounded-lg px-4 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                                >
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-1">
-                                Dietary Requirements & Specifications <span class="text-red-500">*</span>
-                            </label>
-                            <p class="text-xs text-slate-500 mb-3">Select all options that match your requirements. You may select multiple answers.</p>
-
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 bg-slate-50 p-4 rounded-xl border border-slate-200">
-                                <label class="flex items-start space-x-3 cursor-pointer group">
-                                    <input type="checkbox" name="dietType" value="No restrictions" onclick="handleNoneOption(this)" class="custom-checkbox w-4 h-4 mt-0.5 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
-                                    <div class="text-xs">
-                                        <p class="text-slate-800 font-bold group-hover:text-blue-900 transition-colors">No dietary restrictions</p>
-                                        <p class="text-[10px] text-slate-500">I do not have food allergies or intolerances.</p>
-                                    </div>
-                                </label>
-
-                                <label class="flex items-start space-x-3 cursor-pointer group">
-                                    <input type="checkbox" name="dietType" value="Gluten-Free" onclick="uncheckNoneOption()" class="custom-checkbox w-4 h-4 mt-0.5 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
-                                    <div class="text-xs">
-                                        <p class="text-slate-800 font-bold group-hover:text-blue-900 transition-colors">Gluten-Free (Celiac / Sensitive)</p>
-                                        <p class="text-[10px] text-slate-500">Requires gluten-free dishes & clean utensils.</p>
-                                    </div>
-                                </label>
-
-                                <label class="flex items-start space-x-3 cursor-pointer group">
-                                    <input type="checkbox" name="dietType" value="Lactose-Free" onclick="uncheckNoneOption()" class="custom-checkbox w-4 h-4 mt-0.5 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
-                                    <div class="text-xs">
-                                        <p class="text-slate-800 font-bold group-hover:text-blue-900 transition-colors">Lactose-Free / Dairy Intolerant</p>
-                                        <p class="text-[10px] text-slate-500">Excludes standard butter, cow milk, or cream.</p>
-                                    </div>
-                                </label>
-
-                                <label class="flex items-start space-x-3 cursor-pointer group">
-                                    <input type="checkbox" name="dietType" value="Nut Allergy" onclick="uncheckNoneOption()" class="custom-checkbox w-4 h-4 mt-0.5 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
-                                    <div class="text-xs">
-                                        <p class="text-slate-800 font-bold group-hover:text-blue-900 transition-colors">Nut / Peanut Allergy</p>
-                                        <p class="text-[10px] text-red-500 font-medium">Requires strict allergen cross-contamination control.</p>
-                                    </div>
-                                </label>
-
-                                <label class="flex items-start space-x-3 cursor-pointer group">
-                                    <input type="checkbox" name="dietType" value="Seafood Allergy" onclick="uncheckNoneOption()" class="custom-checkbox w-4 h-4 mt-0.5 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
-                                    <div class="text-xs">
-                                        <p class="text-slate-800 font-bold group-hover:text-blue-900 transition-colors">Fish / Seafood Allergy</p>
-                                        <p class="text-[10px] text-slate-500">No fish, shellfish, or cross-contamination.</p>
-                                    </div>
-                                </label>
-
-                                <label class="flex items-start space-x-3 cursor-pointer group">
-                                    <input type="checkbox" name="dietType" value="Vegetarian" onclick="uncheckNoneOption()" class="custom-checkbox w-4 h-4 mt-0.5 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
-                                    <div class="text-xs">
-                                        <p class="text-slate-800 font-bold group-hover:text-blue-900 transition-colors">Vegetarian</p>
-                                        <p class="text-[10px] text-slate-500">No meat, poultry or fish. Eggs/dairy okay.</p>
-                                    </div>
-                                </label>
-
-                                <label class="flex items-start space-x-3 cursor-pointer group">
-                                    <input type="checkbox" name="dietType" value="Vegan" onclick="uncheckNoneOption()" class="custom-checkbox w-4 h-4 mt-0.5 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
-                                    <div class="text-xs">
-                                        <p class="text-slate-800 font-bold group-hover:text-blue-900 transition-colors">Vegan</p>
-                                        <p class="text-[10px] text-slate-500">Completely plant-based, no animal products.</p>
-                                    </div>
-                                </label>
-
-                                <label class="flex items-start space-x-3 cursor-pointer group">
-                                    <input type="checkbox" name="dietType" value="Halal" onclick="uncheckNoneOption()" class="custom-checkbox w-4 h-4 mt-0.5 text-blue-600 rounded border-slate-300 focus:ring-blue-500">
-                                    <div class="text-xs">
-                                        <p class="text-slate-800 font-bold group-hover:text-blue-900 transition-colors">Halal</p>
-                                        <p class="text-[10px] text-slate-500">Adhering to Islamic dietary standards.</p>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-1">
-                                Additional Details / Critical Intolerances
-                            </label>
-                            <p class="text-xs text-slate-500 mb-2">If you have specific allergies not listed above (e.g., stone fruits, soy, eggs) or severe trace sensitivities, please detail them below:</p>
-                            <textarea 
-                                id="dietDetails"
-                                rows="3"
-                                placeholder="Detail any critical sensitivities or comments here..."
-                                class="w-full border border-slate-300 rounded-lg p-3 text-sm bg-slate-50 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition"
-                            ></textarea>
-                        </div>
-
-                        <div class="flex justify-between items-center pt-2">
-                            <button 
-                                type="submit" 
-                                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-8 py-3 rounded-lg shadow-md transition"
-                            >
-                                Submit Registry
-                            </button>
-                            <button 
-                                type="button" 
-                                onclick="triggerFormReset()"
-                                class="text-slate-500 hover:text-slate-800 text-xs font-semibold px-4 py-2 rounded-lg transition"
-                            >
-                                Clear Choices
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-
         <section id="organizers" class="space-y-12 py-12 border-t border-slate-100">
             <div class="text-center">
                 <h2 class="text-3xl font-bold text-slate-900">Lead Organizers</h2>
@@ -430,52 +155,6 @@
     <footer class="bg-slate-900 text-slate-400 py-12 text-center text-sm">
         <p>© 2026 paleoHCS Workshop Committee. All rights reserved.</p>
     </footer>
-
-    <!-- Custom Success Feedback Modal -->
-    <div id="successModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center p-4 z-50 backdrop-blur-sm">
-        <div class="bg-white rounded-xl p-8 max-w-sm w-full shadow-2xl text-center transform scale-95 transition-all duration-300">
-            <div class="text-green-500 mb-4 bg-green-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
-                <i class="fa-regular fa-circle-check text-4xl"></i>
-            </div>
-            <h2 class="text-2xl font-bold mb-2 text-slate-800">Registration Logged!</h2>
-            <p id="successConfirmationMsg" class="text-slate-600 text-sm mb-6"></p>
-            <button 
-                onclick="closeSuccessModal()" 
-                class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg font-semibold transition-colors"
-            >
-                Confirm & Back to Page
-            </button>
-        </div>
-    </div>
-
-    <!-- Custom Action Confirmation Modal -->
-    <div id="confirmModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center p-4 z-50 backdrop-blur-sm">
-        <div class="bg-white rounded-xl p-6 max-w-md w-full shadow-2xl transform scale-95 transition-all duration-300">
-            <div class="flex items-start space-x-3 mb-4">
-                <div class="bg-amber-100 text-amber-700 p-2.5 rounded-full flex-shrink-0">
-                    <i class="fa-solid fa-triangle-exclamation text-lg"></i>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-slate-900">Reset Selection?</h3>
-                    <p class="text-sm text-slate-500 mt-1">Are you sure you want to completely wipe all selected checkboxes and inputs from this form draft?</p>
-                </div>
-            </div>
-            <div class="flex justify-end space-x-3">
-                <button 
-                    onclick="closeConfirmModal()" 
-                    class="px-4 py-2 border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 rounded-lg text-sm font-medium transition"
-                >
-                    Cancel
-                </button>
-                <button 
-                    id="confirmActionButton"
-                    class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition"
-                >
-                    Proceed Reset
-                </button>
-            </div>
-        </div>
-    </div>
 
     <script>
         const agendaData = {
@@ -515,7 +194,7 @@
                 { time: "10:55 AM", event: "Group Photo Session", type: "Social", color: "bg-social" },
                 { time: "11:05 AM", event: "Coffee Break", type: "Break", color: "bg-break" },
                 { time: "11:25 AM", event: "Debate V: Science Dissemination Strategy", type: "Debate", color: "bg-debate" },
-                { time: "12:30 PM", event: "Lunch Break", type: "Break", color: "bg-break" },
+                { time: "12:30 PM", environment: "Lunch Break", type: "Break", color: "bg-break" },
                 { time: "01:50 PM", event: "Afternoon Talk Block (3)", type: "Talks", count: 3 },
                 { time: "02:50 PM", event: "Poster Presentation", type: "Poster", color: "bg-blue-50" },
                 { time: "03:40 PM", event: "Short Break", type: "Break", color: "bg-break" },
@@ -525,19 +204,10 @@
             ]}
         };
 
-        // Form connection configurations stored in localstorage
-        let gformSubmitUrl = localStorage.getItem('gform_submit_url') || '';
-        let gformPrefilledUrl = localStorage.getItem('gform_prefilled_url') || '';
-        let entryName = localStorage.getItem('gform_entry_name') || '';
-        let entryEmail = localStorage.getItem('gform_entry_email') || '';
-        let entryAllergies = localStorage.getItem('gform_entry_allergies') || '';
-        let entryDetails = localStorage.getItem('gform_entry_details') || '';
-
         function initApp() {
             calculateStats();
             showDay(1);
             renderSpeakers();
-            initGoogleFormPanel();
         }
 
         function calculateStats() {
@@ -561,11 +231,11 @@
                 { name: "Frank Lamy", url: "https://www.awi.de/en/about-us/organisation/staff/single-view/frank-lamy.html", affiliation: "Alfred Wegener Institute" },
                 { name: "Pierre Sepulchre", url: "https://pierre-sepulchre.github.io/", affiliation: "LSCE / IPSL" },
                 { name: "Elisa Malinverno", url: "https://idea-m.com/index.php/elisa-maliverno/", affiliation: "University of Milano-Bicocca" },
-                { name: "TBD", url: "", affiliation: "TBD" }
+                { name: "Renato Salvatteci", url: "https://oceanandsociety.org/en/team/dr-renato-salvatteci", affiliation: "Center for Ocean and Society at Kiel University" }
             ];
             const grid = document.getElementById('speaker-grid');
             grid.innerHTML = speakers.map(s => `
-                <a href="${s.url ? s.url : '#'}" target="_blank" class="card p-6 text-center hover:shadow-md block">
+                <a href="${s.url}" target="_blank" class="card p-6 text-center hover:shadow-md block">
                     <div class="w-20 h-20 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
                         <span class="text-blue-600 text-2xl font-bold">${s.name[0]}</span>
                     </div>
@@ -611,209 +281,6 @@
         }
 
         function downloadAgendaImage() { window.location.href = 'paleoHCS_Workshop_Agenda_2026.png'; }
-
-        // Admin configuration toggles
-        function toggleAdminPanel() {
-            const panel = document.getElementById('adminPanel');
-            panel.classList.toggle('hidden');
-        }
-
-        function autoExtractFormKeys() {
-            const fullUrl = document.getElementById('gformPrefilledUrl').value.trim();
-            if (!fullUrl) return;
-
-            // Extract Google Form ID from prefilled url to build the clean submission endpoint
-            const formIdMatch = fullUrl.match(/\/forms\/d\/e\/([a-zA-Z0-9_-]+)/);
-            if (formIdMatch && formIdMatch[1]) {
-                const submissionUrl = `https://docs.google.com/forms/u/0/d/e/${formIdMatch[1]}/formResponse`;
-                document.getElementById('gformSubmitUrl').value = submissionUrl;
-            }
-
-            // Extract form entry keys (e.g. entry.12345) automatically
-            const matches = [...fullUrl.matchAll(/entry\.(\d+)=/g)];
-            if (matches.length > 0) {
-                const entries = matches.map(m => `entry.${m[1]}`);
-                if (entries[0]) document.getElementById('entryName').value = entries[0];
-                if (entries[1]) document.getElementById('entryEmail').value = entries[1];
-                if (entries[2]) document.getElementById('entryAllergies').value = entries[2];
-                if (entries[3]) document.getElementById('entryDetails').value = entries[3];
-            }
-        }
-
-        function initGoogleFormPanel() {
-            document.getElementById('gformPrefilledUrl').value = gformPrefilledUrl;
-            document.getElementById('gformSubmitUrl').value = gformSubmitUrl;
-            document.getElementById('entryName').value = entryName;
-            document.getElementById('entryEmail').value = entryEmail;
-            document.getElementById('entryAllergies').value = entryAllergies;
-            document.getElementById('entryDetails').value = entryDetails;
-
-            const badge = document.getElementById('connectionBadge');
-            const discBtn = document.getElementById('disconnectBtn');
-
-            if (gformSubmitUrl) {
-                badge.textContent = "Connected";
-                badge.className = "bg-green-100 text-green-700 text-[10px] uppercase font-extrabold px-2 py-0.5 rounded-full";
-                discBtn.classList.remove('hidden');
-            } else {
-                badge.textContent = "Offline Simulation Mode";
-                badge.className = "bg-amber-100 text-amber-700 text-[10px] uppercase font-extrabold px-2 py-0.5 rounded-full";
-                discBtn.classList.add('hidden');
-            }
-        }
-
-        function saveGoogleFormConfig() {
-            const prefilled = document.getElementById('gformPrefilledUrl').value.trim();
-            const submit = document.getElementById('gformSubmitUrl').value.trim();
-            const name = document.getElementById('entryName').value.trim();
-            const email = document.getElementById('entryEmail').value.trim();
-            const allergies = document.getElementById('entryAllergies').value.trim();
-            const details = document.getElementById('entryDetails').value.trim();
-            const msgDiv = document.getElementById('connectionMessage');
-
-            if (!submit || !name || !email || !allergies) {
-                msgDiv.textContent = "Error: Submission URL and mandatory entry keys are required.";
-                msgDiv.className = "text-xs font-semibold p-2.5 rounded text-center bg-red-50 text-red-700 block";
-                return;
-            }
-
-            gformPrefilledUrl = prefilled;
-            gformSubmitUrl = submit;
-            entryName = name;
-            entryEmail = email;
-            entryAllergies = allergies;
-            entryDetails = details;
-
-            localStorage.setItem('gform_prefilled_url', prefilled);
-            localStorage.setItem('gform_submit_url', submit);
-            localStorage.setItem('gform_entry_name', name);
-            localStorage.setItem('gform_entry_email', email);
-            localStorage.setItem('gform_entry_allergies', allergies);
-            localStorage.setItem('gform_entry_details', details);
-
-            initGoogleFormPanel();
-
-            msgDiv.textContent = "Success! Custom Google Form bridge successfully saved and live.";
-            msgDiv.className = "text-xs font-semibold p-2.5 rounded text-center bg-green-50 text-green-700 block";
-            setTimeout(() => { msgDiv.className = "hidden"; }, 3500);
-        }
-
-        function disconnectGoogleForm() {
-            gformPrefilledUrl = '';
-            gformSubmitUrl = '';
-            entryName = '';
-            entryEmail = '';
-            entryAllergies = '';
-            entryDetails = '';
-
-            localStorage.removeItem('gform_prefilled_url');
-            localStorage.removeItem('gform_submit_url');
-            localStorage.removeItem('gform_entry_name');
-            localStorage.removeItem('gform_entry_email');
-            localStorage.removeItem('gform_entry_allergies');
-            localStorage.removeItem('gform_entry_details');
-
-            initGoogleFormPanel();
-
-            const msgDiv = document.getElementById('connectionMessage');
-            msgDiv.textContent = "Disconnected. Returned to local simulation testing.";
-            msgDiv.className = "text-xs font-semibold p-2.5 rounded text-center bg-amber-50 text-amber-700 block";
-            setTimeout(() => { msgDiv.className = "hidden"; }, 3500);
-        }
-
-        // Checklist behavioral mechanics
-        function handleNoneOption(checkbox) {
-            if (checkbox.checked) {
-                const checkboxes = document.querySelectorAll('input[name="dietType"]');
-                checkboxes.forEach(cb => {
-                    if (cb.value !== "No restrictions") {
-                        cb.checked = false;
-                    }
-                });
-            }
-        }
-
-        function uncheckNoneOption() {
-            const noneCheckbox = document.querySelector('input[name="dietType"][value="No restrictions"]');
-            if (noneCheckbox) noneCheckbox.checked = false;
-        }
-
-        function handleFormSubmit(event) {
-            event.preventDefault();
-
-            const name = document.getElementById('fullName').value.trim();
-            const email = document.getElementById('emailAddress').value.trim();
-            const details = document.getElementById('dietDetails').value.trim();
-
-            const selectedCheckboxes = document.querySelectorAll('input[name="dietType"]:checked');
-            if (selectedCheckboxes.length === 0) {
-                const firstCheckbox = document.querySelector('input[name="dietType"]');
-                firstCheckbox.setCustomValidity("Please select at least one dietary specification.");
-                firstCheckbox.reportValidity();
-                return;
-            } else {
-                document.querySelector('input[name="dietType"]').setCustomValidity("");
-            }
-
-            const allergies = Array.from(selectedCheckboxes).map(cb => cb.value);
-
-            // Forward data to active live Google Form if credentials are saved
-            if (gformSubmitUrl && entryName && entryEmail && entryAllergies) {
-                const formData = new FormData();
-                formData.append(entryName, name);
-                formData.append(entryEmail, email);
-                
-                // Google Forms checkbox lists process by repeating the entry key parameter multiple times
-                allergies.forEach(allergy => {
-                    formData.append(entryAllergies, allergy);
-                });
-                
-                if (entryDetails && details) {
-                    formData.append(entryDetails, details);
-                }
-
-                // POST action using standard fetch with "no-cors" mode to avoid CORS browser blocks
-                fetch(gformSubmitUrl, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: formData
-                })
-                .then(() => {
-                    console.log("Transmission sent to Google Forms API!");
-                })
-                .catch(err => {
-                    console.error("Transmission error detailed here:", err);
-                });
-            }
-
-            // Launch custom success modal
-            const successConfirmationMsg = document.getElementById('successConfirmationMsg');
-            successConfirmationMsg.innerHTML = `Welcome, <strong class="text-blue-900">${name}</strong>.<br>Your dietary restrictions have been saved and sent straight to our planning coordinators!`;
-            
-            document.getElementById('successModal').classList.remove('hidden');
-        }
-
-        function closeSuccessModal() {
-            document.getElementById('successModal').classList.add('hidden');
-            document.getElementById('workshopDietaryForm').reset();
-        }
-
-        // Custom modal confirmations
-        function triggerFormReset() {
-            const modal = document.getElementById('confirmModal');
-            const actionBtn = document.getElementById('confirmActionButton');
-
-            actionBtn.onclick = function() {
-                document.getElementById('workshopDietaryForm').reset();
-                closeConfirmModal();
-            };
-
-            modal.classList.remove('hidden');
-        }
-
-        function closeConfirmModal() {
-            document.getElementById('confirmModal').classList.add('hidden');
-        }
 
         window.onload = initApp;
     </script>
